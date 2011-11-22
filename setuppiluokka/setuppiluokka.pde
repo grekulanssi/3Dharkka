@@ -58,7 +58,10 @@ Leveys: 10 cm
 Korkeus: 14 cm*/
   box(PAKSUUS, 140, 100);
   //tähän kai translate tai pushmatrix tms sirto
+  pushMatrix();
+  translate(100,0,0);
   box(PAKSUUS, 140, 100);
+  popMatrix();
   //tähän kai translate takas tai popmatrix
   }
   
