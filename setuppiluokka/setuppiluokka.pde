@@ -20,15 +20,14 @@ void draw() {
   background(240);
   
   // Change height of the camera with mouseY
-  camera(30.0, mouseY, 220.0, // eyeX, eyeY, eyeZ
+  camera(50.0, mouseY, 220.0, // eyeX, eyeY, eyeZ
          0.0, 0.0, 0.0, // centerX, centerY, centerZ
          0.0, 1.0, 0.0); // upX, upY, upZ
   
   noStroke();
   
   hakka.piirra();
-
-  
+    
   stroke(0);
   line(-100, 0, 0, 100, 0, 0);
   line(0, -100, 0, 0, 100, 0);
@@ -49,11 +48,13 @@ class Hakka {
   
   public Hakka() {
     lieriot = new Lierio[REIKIA];
-    
+    for (int i = 0; i < REIKIA; i++){
+      lieriot[i] = new Lierio();
+    }
   }
   
   void piirra() {
-      /*Pituus: 24 cm
+/*Pituus: 24 cm
 Leveys: 10 cm
 Korkeus: 14 cm*/
   box(PAKSUUS, 140, 100);
@@ -61,8 +62,36 @@ Korkeus: 14 cm*/
   pushMatrix();
   translate(100,0,0);
   box(PAKSUUS, 140, 100);
+  /*for (int i = 0; i < REIKIA; i++){
+    translate(0,10*i,0);
+    box(10, 10, 20*i);
+    println(i);
+  }*/
   popMatrix();
   //tähän kai translate takas tai popmatrix
-  }
   
+  
+  // piirretään tapit
+  
+  pushMatrix();
+  rotateX(PI/2);
+  translate(0, -50, -20);
+  for(int i = 0; i < REIKIA; i++){
+    Lierio tappi = lieriot[i];
+    if (i % 4 == 0){
+    translate(20*(i-(i-1)), 0, 0);
+      }
+    else if (i % 4 == 1) {
+    translate(0, 0, 40*(i-(i-1)));
+      }
+     else if (i % 4 == 2){
+     translate(20*(i-(i-1)), 0, 0);
+     }
+     else {
+     translate(0, 0, -40*(i-(i-1)));
+     }
+    tappi.piirra(HALKAISIJA/2, 100, 100);
+  }
+    popMatrix();
+  }
 }
