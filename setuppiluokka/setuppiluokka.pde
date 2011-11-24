@@ -1,5 +1,9 @@
 import processing.opengl.*;
 
+/*import peasy.*;
+
+PeasyCam cam;*/
+
 Hakka hakka;
 
 //hakassa olevien reikien lukumäärä:
@@ -13,18 +17,24 @@ void setup() {
   size(800, 400, OPENGL);
   fill(112);
   hakka = new Hakka();
+  
+  // peasycam
+  /*cam = new PeasyCam(this, 100);
+  cam.setMinimumDistance(200);
+  cam.setMaximumDistance(500);*/
 }
 
 void draw() {
-  //lights();
-  ambientLight(200,100,200);
-  directionalLight(51, 102, 126, 0, -1, 0);
-  background(0);
   
   // Change height of the camera with mouseY
   camera(50.0, mouseY, 220.0, // eyeX, eyeY, eyeZ
          0.0, 0.0, 0.0, // centerX, centerY, centerZ
          0.0, 1.0, 0.0); // upX, upY, upZ
+  
+  //lights();
+  ambientLight(200,100,200);
+  directionalLight(51, 102, 126, 0, -1, 0);
+  background(0);
   
   noStroke();
   
