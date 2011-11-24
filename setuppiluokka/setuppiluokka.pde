@@ -16,8 +16,10 @@ void setup() {
 }
 
 void draw() {
-  lights();
-  background(240);
+  //lights();
+  ambientLight(200,100,200);
+  directionalLight(51, 102, 126, 0, -1, 0);
+  background(0);
   
   // Change height of the camera with mouseY
   camera(50.0, mouseY, 220.0, // eyeX, eyeY, eyeZ
