@@ -62,6 +62,9 @@ class Hakka {
     lieriot = new Lierio[REIKIA];
     for (int i = 0; i < REIKIA; i++){
       lieriot[i] = new Lierio();
+      if(i == 0) {
+        lieriot[i].asetaValittu();
+      }
     }
   }
   
@@ -101,6 +104,12 @@ Korkeus: 14 cm*/
      }
      else {
      translate(0, 0, -40*(i-(i-1)));
+     }
+     if(tappi.onkoValittu()) {
+      fill(255); 
+     }
+     else {
+       fill(100);
      }
     tappi.piirra(HALKAISIJA/2, 100, 100);
   }
