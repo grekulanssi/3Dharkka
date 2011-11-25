@@ -9,7 +9,7 @@ Hakka hakka;
 //hakassa olevien reikien lukumäärä:
 final int REIKIA = 8;
 //Yhden lankun paksuus
-final int PAKSUUS = 15;
+final int PAKSUUS = 12;
 //Yhden reijän halkaisija 
 final int HALKAISIJA = 12;
 //TAHTIJUTTUJA
@@ -47,15 +47,13 @@ void draw() {
   }*/
   
   // Change height of the camera with mouseY
-<<<<<<< HEAD
-  camera(50.0, mouseY, 220.0, // eyeX, eyeY, eyeZ
+/* camera(50.0, mouseY, 220.0, // eyeX, eyeY, eyeZ
          0.0, 0.0, 0.0, // centerX, centerY, centerZ
          0.0, 1.0, 0.0); // upX, upY, upZ 
-=======
+         */
   camera(80.0, mouseY, 250.0, // eyeX, eyeY, eyeZ
          80.0, 0.0, 0.0, // centerX, centerY, centerZ
          0.0, 1.0, 0.0); // upX, upY, upZ
->>>>>>> 94a3820eaf5c2f4e30c113ee6a22e27701da5fcc
   
   //lights();
   ambientLight(200,100,200);
@@ -143,16 +141,13 @@ class Hakka {
 /*Pituus: 24 cm
 Leveys: 10 cm
 Korkeus: 14 cm*/
-  box(PAKSUUS, 140, 100);
+  box(PAKSUUS, 80, 100);
   //tähän kai translate tai pushmatrix tms sirto
   pushMatrix();
-  translate(100,0,0);
-  box(PAKSUUS, 140, 100);
-  /*for (int i = 0; i < REIKIA; i++){
-    translate(0,10*i,0);
-    box(10, 10, 20*i);
-    println(i);
-  }*/
+  translate(150, 0, 0);
+  box(PAKSUUS, 80, 100);
+  translate(-75, 0, 0);
+  box(140, 80, 10);
   popMatrix();
   //tähän kai translate takas tai popmatrix
   
@@ -161,20 +156,20 @@ Korkeus: 14 cm*/
   
   pushMatrix();
   rotateX(PI/2);
-  translate(0, -50, -20);
+  translate(0, -20, -20);
   for(int i = 0; i < REIKIA; i++){
     Lierio tappi = lieriot[i];
     if (i % 4 == 0){
-    translate(20*(i-(i-1)), 0, 0);
+    translate(30*(i-(i-1)), 0, 0);
       }
     else if (i % 4 == 1) {
-    translate(0, 0, 40*(i-(i-1)));
+    translate(0, 0, 35*(i-(i-1)));
       }
      else if (i % 4 == 2){
-     translate(20*(i-(i-1)), 0, 0);
+     translate(30*(i-(i-1)), 0, 0);
      }
      else {
-     translate(0, 0, -40*(i-(i-1)));
+     translate(0, 0, -35*(i-(i-1)));
      }
      if(tappi.onkoValittu()) {
       fill(255); 
@@ -182,7 +177,7 @@ Korkeus: 14 cm*/
      else {
        fill(100);
      }
-    tappi.piirra(HALKAISIJA/2, 100, 100);
+    tappi.piirra(HALKAISIJA/2, 60, 100);
   }
     popMatrix();
   }
