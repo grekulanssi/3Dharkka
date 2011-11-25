@@ -47,15 +47,10 @@ void draw() {
   }*/
   
   // Change height of the camera with mouseY
-<<<<<<< HEAD
-  camera(50.0, mouseY, 220.0, // eyeX, eyeY, eyeZ
-         0.0, 0.0, 0.0, // centerX, centerY, centerZ
-         0.0, 1.0, 0.0); // upX, upY, upZ 
-=======
+
   camera(80.0, mouseY, 250.0, // eyeX, eyeY, eyeZ
          80.0, 0.0, 0.0, // centerX, centerY, centerZ
          0.0, 1.0, 0.0); // upX, upY, upZ
->>>>>>> 94a3820eaf5c2f4e30c113ee6a22e27701da5fcc
   
   //lights();
   ambientLight(200,100,200);
