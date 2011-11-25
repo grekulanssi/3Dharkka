@@ -12,11 +12,26 @@ final int REIKIA = 8;
 final int PAKSUUS = 15;
 //Yhden reijän halkaisija 
 final int HALKAISIJA = 12;
+//TAHTIJUTTUJA
+int tahtia=400;
+final int SPREAD=64;
+int CX,CY;
+final float SPEED=1.9;
+
+Star[] s = new Star[tahtia];
 
 void setup() {
   size(800, 400, OPENGL);
   fill(112);
   hakka = new Hakka();
+  
+  //TAHTIJUTTUJA
+    CX=width/2 ; CY=height/2;
+ /// s = new Star[numstars];
+  for(int i=0;i<tahtia;i++){
+    s[i]=new Star();
+    s[i].SetPosition();
+  }
   
   // peasycam
   /*cam = new PeasyCam(this, 100);
@@ -25,11 +40,22 @@ void setup() {
 }
 
 void draw() {
+ 
+ /*       //TAHTIJUTTUJA
+    for(int i=0;i<tahtia;i++){
+    s[i].DrawStar();
+  }*/
   
   // Change height of the camera with mouseY
+<<<<<<< HEAD
   camera(50.0, mouseY, 220.0, // eyeX, eyeY, eyeZ
          0.0, 0.0, 0.0, // centerX, centerY, centerZ
+         0.0, 1.0, 0.0); // upX, upY, upZ 
+=======
+  camera(80.0, mouseY, 250.0, // eyeX, eyeY, eyeZ
+         80.0, 0.0, 0.0, // centerX, centerY, centerZ
          0.0, 1.0, 0.0); // upX, upY, upZ
+>>>>>>> 94a3820eaf5c2f4e30c113ee6a22e27701da5fcc
   
   //lights();
   ambientLight(200,100,200);
@@ -159,5 +185,29 @@ Korkeus: 14 cm*/
     tappi.piirra(HALKAISIJA/2, 100, 100);
   }
     popMatrix();
+  }
+}
+class Star { 
+  float x=0,y=0,z=0,sx=0,sy=0;
+  void SetPosition(){
+    z=(float) random(300,255);
+    x=(float) random(-1000,1000);
+    y=(float) random(-1000,1000);
+  }
+  void DrawStar(){
+    if (z<SPEED){
+	this.SetPosition();
+    }
+    z-=SPEED;
+    sx=(x*SPREAD)/(z)+CX;
+    sy=(y*SPREAD)/(4+z)+CY;
+    if (sx<0 | sx>width){
+	this.SetPosition();
+    }
+    if (sy<0 | sy>height){
+	this.SetPosition();
+    }
+    fill(color(255 - (int) z,255 - (int) z,255 - (int) z));
+    ellipse( (int) sx,(int) sy,3,3);
   }
 }
