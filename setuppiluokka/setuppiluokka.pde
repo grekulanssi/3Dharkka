@@ -51,7 +51,7 @@ void draw() {
          0.0, 0.0, 0.0, // centerX, centerY, centerZ
          0.0, 1.0, 0.0); // upX, upY, upZ 
          */
-  camera(80.0, mouseY, 250.0, // eyeX, eyeY, eyeZ
+  camera(80.0, mouseY, 150.0, // eyeX, eyeY, eyeZ
          80.0, 0.0, 0.0, // centerX, centerY, centerZ
          0.0, 1.0, 0.0); // upX, upY, upZ
   
@@ -172,14 +172,23 @@ Korkeus: 14 cm*/
      translate(0, 0, -35*(i-(i-1)));
      }
      if(tappi.onkoValittu()) {
-      fill(255); 
+      fill(255);
      }
      else {
        fill(100);
      }
     tappi.piirra(HALKAISIJA/2, 60, 100);
-  }
+    pushMatrix();
+    rotateX(PI/2);
+    ellipse(0, 0,HALKAISIJA, HALKAISIJA);
+    translate(0,0,-60);
+    ellipse(0, 0, HALKAISIJA, HALKAISIJA);
+    translate(0, 0, 60);
+    rotateX(-PI/2);
     popMatrix();
+    
+  }
+  popMatrix();
   }
 }
 class Star { 
