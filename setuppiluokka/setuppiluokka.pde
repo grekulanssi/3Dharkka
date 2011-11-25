@@ -139,6 +139,8 @@ class Hakka {
       }
     }
     
+    fill(112);
+    
 /*Pituus: 24 cm
 Leveys: 10 cm
 Korkeus: 14 cm*/
