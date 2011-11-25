@@ -14,7 +14,7 @@ final int PAKSUUS = 12;
 final int HALKAISIJA = 12;
 //TAHTIJUTTUJA
 int tahtia=400;
-final int SPREAD=64;
+final int SPREAD=94;
 int CX,CY;
 final float SPEED=1.9;
 
@@ -42,16 +42,8 @@ void draw() {
 
   // Change height of the camera with mouseY
 
-<<<<<<< HEAD
 
-  camera(80.0, mouseY, 250.0, // eyeX, eyeY, eyeZ
-=======
-/* camera(50.0, mouseY, 220.0, // eyeX, eyeY, eyeZ
-         0.0, 0.0, 0.0, // centerX, centerY, centerZ
-         0.0, 1.0, 0.0); // upX, upY, upZ 
-         */
   camera(80.0, mouseY, 150.0, // eyeX, eyeY, eyeZ
->>>>>>> b4c61ea11baa198fd666ef4c0a2d2dbb72d90e98
          80.0, 0.0, 0.0, // centerX, centerY, centerZ
          0.0, 1.0, 0.0); // upX, upY, upZ
   
@@ -62,7 +54,7 @@ void draw() {
   
   noStroke();
   fill(112);
-  hakka.piirra();
+ hakka.piirra();
     
   stroke(0);
   line(-100, 0, 0, 100, 0, 0);
@@ -204,26 +196,26 @@ class Star {
   float x=0,y=0,z=0,sx=0,sy=0;
   void SetPosition(){
     z=(float) random(300,255);
-    x=(float) random(-100,1000);
-    y=(float) random(-100,1000);
+    x=(float) random(-1000,1000);
+    y=(float) random(-1000,1000);
   }
   void DrawStar(){
     pushMatrix();
-    translate(-600,-250);
+    translate(-500,-250, -250);
     if (z<SPEED){
 	this.SetPosition();
     }
     z-=SPEED;
     sx=(x*SPREAD)/(z)+CX;
     sy=(y*SPREAD)/(4+z)+CY;
-    if (sx<0 | sx>width){
+    if (sx<0 | sx>width*2){
 	this.SetPosition();
     }
-    if (sy<0 | sy>height){
+    if (sy<-1000 | sy>height * 1.5){
 	this.SetPosition();
     }
     fill(color(255 - (int) z,255 - (int) z,255 - (int) z));
-    ellipse( (int) sx,(int) sy,3,3);
+    ellipse( (int) sx,(int) sy,5,5);
     popMatrix();
   }
 }
