@@ -1,10 +1,26 @@
 class Lierio {
   
   int osumat;
+  boolean onkoValittu;
   
   public Lierio(){
+    
   this.osumat = 0;
+  this.onkoValittu = false;
   
+  }
+  
+  public void asetaValittu() {
+    this.onkoValittu = true;
+  }
+  
+  public boolean onkoValittu() {
+    if(this.onkoValittu) {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
   
   void piirra(float sade, float pituus, int sarmienMaara) {
