@@ -9,7 +9,7 @@ Hakka hakka;
 //hakassa olevien reikien lukumäärä:
 final int REIKIA = 8;
 //Yhden lankun paksuus
-final int PAKSUUS = 12;
+final int PAKSUUS = 15;
 //Yhden reijän halkaisija 
 final int HALKAISIJA = 12;
 
@@ -46,6 +46,17 @@ void draw() {
   line(0, 0, -100, 0, 0, 100);
 }
 
+void keyPressed() {
+  
+ if(keyCode == UP) {
+   hakka.hakanPainallus(true);
+ }
+ 
+ if(keyCode == DOWN) {
+   hakka.hakanPainallus(false);
+ }
+}
+
 /*
 Hakka on H-kirjaimen muotoinen lasten lelu.
 Mitat (edestä katsottuna):
@@ -56,6 +67,7 @@ MITTAKAAVA: 1 px = 1 mm.
 */
 class Hakka {
   
+  int valitunIndeksi;
   Lierio[] lieriot;
   
   public Hakka() {
@@ -64,41 +76,79 @@ class Hakka {
       lieriot[i] = new Lierio();
       if(i == 0) {
         lieriot[i].asetaValittu(true);
+        this.valitunIndeksi = i;
       }
     }
   }
   
+  public void hakanPainallus(boolean a) {
+   
+   if(a) {
+     if(this.valitunIndeksi != REIKIA) {
+       this.valitunIndeksi++;
+     }
+     else {
+      this.valitunIndeksi = 0; 
+     }
+   }
+   else {
+     if(this.valitunIndeksi != 0) {
+       this.valitunIndeksi--;
+     }
+     else {
+      this.valitunIndeksi = REIKIA; 
+     }
+   }
+    
+  }
+  
   void piirra() {
+    
+    println(this.valitunIndeksi);
+    
+    for(int j = 0; j < REIKIA; j++) {
+      if(j == this.valitunIndeksi) {
+       lieriot[j].asetaValittu(true); 
+      } else {
+       lieriot[j].asetaValittu(false); 
+      }
+    }
+    
 /*Pituus: 24 cm
 Leveys: 10 cm
 Korkeus: 14 cm*/
-  box(PAKSUUS, 80, 100);
+  box(PAKSUUS, 140, 100);
   //tähän kai translate tai pushmatrix tms sirto
   pushMatrix();
-  translate(150,0,0);
-  box(PAKSUUS, 80, 100);
-  translate(-75, 0, 0);
-  box(140, 80, 10);
+  translate(100,0,0);
+  box(PAKSUUS, 140, 100);
+  /*for (int i = 0; i < REIKIA; i++){
+    translate(0,10*i,0);
+    box(10, 10, 20*i);
+    println(i);
+  }*/
   popMatrix();
   //tähän kai translate takas tai popmatrix
+  
+  
   // piirretään tapit
   
   pushMatrix();
   rotateX(PI/2);
-  translate(0, -20, -20);
+  translate(0, -50, -20);
   for(int i = 0; i < REIKIA; i++){
     Lierio tappi = lieriot[i];
     if (i % 4 == 0){
-    translate(30*(i-(i-1)), 0, 0);
+    translate(20*(i-(i-1)), 0, 0);
       }
     else if (i % 4 == 1) {
-    translate(0, 0, 35*(i-(i-1)));
+    translate(0, 0, 40*(i-(i-1)));
       }
      else if (i % 4 == 2){
-     translate(30*(i-(i-1)), 0, 0);
+     translate(20*(i-(i-1)), 0, 0);
      }
      else {
-     translate(0, 0, -35*(i-(i-1)));
+     translate(0, 0, -40*(i-(i-1)));
      }
      if(tappi.onkoValittu()) {
       fill(255); 
@@ -106,7 +156,7 @@ Korkeus: 14 cm*/
      else {
        fill(100);
      }
-    tappi.piirra(HALKAISIJA/2, 60, 100);
+    tappi.piirra(HALKAISIJA/2, 100, 100);
   }
     popMatrix();
   }
