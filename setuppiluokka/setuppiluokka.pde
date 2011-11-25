@@ -42,6 +42,13 @@ void draw() {
 
   // Change height of the camera with mouseY
 
+<<<<<<< HEAD
+=======
+/* camera(50.0, mouseY, 220.0, // eyeX, eyeY, eyeZ
+         0.0, 0.0, 0.0, // centerX, centerY, centerZ
+         0.0, 1.0, 0.0); // upX, upY, upZ 
+         */
+>>>>>>> a41c05506366089b2dbf480f10dde952995dcf81
   camera(80.0, mouseY, 250.0, // eyeX, eyeY, eyeZ
          80.0, 0.0, 0.0, // centerX, centerY, centerZ
          0.0, 1.0, 0.0); // upX, upY, upZ
@@ -68,6 +75,17 @@ void draw() {
   
 }
 
+void keyPressed() {
+  
+ if(keyCode == UP) {
+   hakka.hakanPainallus(true);
+ }
+ 
+ if(keyCode == DOWN) {
+   hakka.hakanPainallus(false);
+ }
+}
+
 /*
 Hakka on H-kirjaimen muotoinen lasten lelu.
 Mitat (edestä katsottuna):
@@ -78,6 +96,7 @@ MITTAKAAVA: 1 px = 1 mm.
 */
 class Hakka {
   
+  int valitunIndeksi;
   Lierio[] lieriot;
   
   public Hakka() {
@@ -85,24 +104,61 @@ class Hakka {
     for (int i = 0; i < REIKIA; i++){
       lieriot[i] = new Lierio();
       if(i == 0) {
-        lieriot[i].asetaValittu();
+        lieriot[i].asetaValittu(true);
+        this.valitunIndeksi = i;
       }
     }
   }
   
+  public void hakanPainallus(boolean a) {
+   
+   if(a) {
+     if(this.valitunIndeksi != REIKIA) {
+       this.valitunIndeksi++;
+     }
+     else {
+      this.valitunIndeksi = 0; 
+     }
+   }
+   else {
+     if(this.valitunIndeksi != 0) {
+       this.valitunIndeksi--;
+     }
+     else {
+      this.valitunIndeksi = REIKIA; 
+     }
+   }
+    
+  }
+  
   void piirra() {
+    
+    println(this.valitunIndeksi);
+    
+    for(int j = 0; j < REIKIA; j++) {
+      if(j == this.valitunIndeksi) {
+       lieriot[j].asetaValittu(true); 
+      } else {
+       lieriot[j].asetaValittu(false); 
+      }
+    }
+    
+    fill(112);
+    
 /*Pituus: 24 cm
 Leveys: 10 cm
 Korkeus: 14 cm*/
   box(PAKSUUS, 80, 100);
   //tähän kai translate tai pushmatrix tms sirto
   pushMatrix();
-  translate(150,0,0);
+  translate(150, 0, 0);
   box(PAKSUUS, 80, 100);
   translate(-75, 0, 0);
   box(140, 80, 10);
   popMatrix();
   //tähän kai translate takas tai popmatrix
+  
+  
   // piirretään tapit
   
   pushMatrix();
