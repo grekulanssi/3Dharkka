@@ -24,7 +24,7 @@ class Lierio {
   }
   
   void piirra(float sade, float pituus, int sarmienMaara) {
-    //miten lierio piirretään, Oliver?
+
   float kulma = 0;
   float kulmanLisays = TWO_PI / sarmienMaara;
   beginShape(QUAD_STRIP);
