@@ -27,8 +27,8 @@ void setup() {
 void draw() {
   
   // Change height of the camera with mouseY
-  camera(50.0, mouseY, 220.0, // eyeX, eyeY, eyeZ
-         0.0, 0.0, 0.0, // centerX, centerY, centerZ
+  camera(80.0, mouseY, 250.0, // eyeX, eyeY, eyeZ
+         80.0, 0.0, 0.0, // centerX, centerY, centerZ
          0.0, 1.0, 0.0); // upX, upY, upZ
   
   //lights();
