@@ -63,7 +63,7 @@ class Hakka {
     for (int i = 0; i < REIKIA; i++){
       lieriot[i] = new Lierio();
       if(i == 0) {
-        lieriot[i].asetaValittu();
+        lieriot[i].asetaValittu(true);
       }
     }
   }

@@ -10,8 +10,8 @@ class Lierio {
   
   }
   
-  public void asetaValittu() {
-    this.onkoValittu = true;
+  public void asetaValittu(boolean a) {
+    this.onkoValittu = a;
   }
   
   public boolean onkoValittu() {
