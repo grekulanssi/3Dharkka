@@ -5,6 +5,8 @@ import processing.opengl.*;
 PeasyCam cam;*/
 
 Hakka hakka;
+int lujuus; //kuinka lujaa hakkaa lyodaan
+boolean onkoPohjassa; // painetaanko valilyontia
 
 //hakassa olevien reikien lukumäärä:
 final int REIKIA = 8;
@@ -24,6 +26,8 @@ void setup() {
   size(800, 400, OPENGL);
   fill(112);
   hakka = new Hakka();
+  lujuus = 0;
+  onkoPohjassa = false;
   
   //TAHTIJUTTUJA
     CX=width/2 ; CY=height/2;
@@ -54,7 +58,7 @@ void draw() {
   
   noStroke();
   fill(112);
- hakka.piirra();
+  hakka.piirra();
     
   stroke(0);
   line(-100, 0, 0, 100, 0, 0);
@@ -62,22 +66,36 @@ void draw() {
   line(0, 0, -100, 0, 0, 100);
   
             //TAHTIJUTTUJA
-    for(int i=0;i<tahtia;i++){
+  for(int i=0;i<tahtia;i++) {
     s[i].DrawStar();
-  }  
-
+  }
   
 }
 
 void keyPressed() {
   
- if(keyCode == UP) {
+ if(keyCode == UP && !onkoPohjassa) {
    hakka.hakanPainallus(true);
  }
  
- if(keyCode == DOWN) {
+ if(keyCode == DOWN && !onkoPohjassa) {
    hakka.hakanPainallus(false);
  }
+ 
+ if(key == ' ') {
+   lujuus+=5;
+   onkoPohjassa = true;
+ }
+}
+
+void keyReleased() {
+  
+  if(key == ' ') {
+    println(lujuus);
+    lujuus = 0;
+    onkoPohjassa = false;
+  }
+  
 }
 
 /*
@@ -127,7 +145,7 @@ class Hakka {
   
   void piirra() {
     
-    println(this.valitunIndeksi);
+    //println(this.valitunIndeksi);
     
     for(int j = 0; j < REIKIA; j++) {
       if(j == this.valitunIndeksi) {
@@ -158,6 +176,7 @@ Korkeus: 14 cm*/
   pushMatrix();
   rotateX(PI/2);
   translate(0, -20, -20);
+  
   for(int i = 0; i < REIKIA; i++){
     Lierio tappi = lieriot[i];
     if (i % 4 == 0){
@@ -173,7 +192,12 @@ Korkeus: 14 cm*/
      translate(0, 0, -35*(i-(i-1)));
      }
      if(tappi.onkoValittu()) {
-      fill(255);
+      //fill(255);
+      if(lujuus <= 255) {
+       fill(lujuus, 0, 0); 
+      } else {
+       fill(255, 10, 10); 
+      }
      }
      else {
        fill(112);
