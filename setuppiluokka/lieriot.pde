@@ -1,11 +1,11 @@
 class Lierio {
   
-  int osumat;
+  int positio;
   boolean onkoValittu;
   
   public Lierio(){
     
-  this.osumat = 0;
+  this.positio = 0;
   this.onkoValittu = false;
   
   }
@@ -20,6 +20,16 @@ class Lierio {
     }
     else {
       return false;
+    }
+  }
+  
+   public int annaPositio(){
+    return this.positio;
+  }
+  
+  public void muutaPositiota(int muutos){
+    if (positio <= 29 && positio >= -29){
+    this.positio -= muutos;
     }
   }
   
