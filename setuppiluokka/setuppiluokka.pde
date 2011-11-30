@@ -2,7 +2,6 @@ import processing.opengl.*;
 
 /*import peasy.*;
 
-testinggg
 PeasyCam cam;*/
 
 Hakka hakka;
@@ -92,6 +91,12 @@ void keyPressed() {
 void keyReleased() {
   
   if(key == ' ') {
+    Lierio valittu = hakka.annaValittuTappi();
+    int muutos = (int) (255/50);
+    if (valittu != null){
+    valittu.muutaPositiota(muutos);
+    println(valittu.annaPositio());
+    }
     println(lujuus);
     lujuus = 0;
     onkoPohjassa = false;
@@ -141,7 +146,16 @@ class Hakka {
       this.valitunIndeksi = REIKIA; 
      }
    }
-    
+  }
+  
+  public Lierio annaValittuTappi(){
+     for (int a = 0; a < REIKIA; a++){
+       Lierio lierio = lieriot[a];
+       if (lierio.onkoValittu()){
+         return lierio;
+       }
+     }
+     return null;
   }
   
   void piirra() {
@@ -158,9 +172,6 @@ class Hakka {
     
     fill(112);
     
-/*Pituus: 24 cm
-Leveys: 10 cm
-Korkeus: 14 cm*/
   box(PAKSUUS, 80, 100);
   //tähän kai translate tai pushmatrix tms sirto
   pushMatrix();
@@ -169,9 +180,7 @@ Korkeus: 14 cm*/
   translate(-75, 0, 0);
   box(140, 80, 10);
   popMatrix();
-  //tähän kai translate takas tai popmatrix
-  
-  
+    
   // piirretään tapit
   
   pushMatrix();
@@ -203,13 +212,17 @@ Korkeus: 14 cm*/
      else {
        fill(112);
      }
+    translate(0, tappi.annaPositio(), 0);
     tappi.piirra(HALKAISIJA/2, 60, 100);
+    translate(0, -tappi.annaPositio(), 0);
     pushMatrix();
     rotateX(PI/2);
+    translate(0, 0, -tappi.annaPositio());
     ellipse(0, 0,HALKAISIJA, HALKAISIJA);
     translate(0,0,-60);
     ellipse(0, 0, HALKAISIJA, HALKAISIJA);
     translate(0, 0, 60);
+    translate(0, 0, tappi.annaPositio());
     rotateX(-PI/2);
     popMatrix();
     
