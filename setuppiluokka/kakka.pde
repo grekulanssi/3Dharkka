@@ -1,12 +1,9 @@
 /*
 Hakka on H-kirjaimen muotoinen lasten lelu.
-Mitat (edestä katsottuna):
-x (leveys): 240 mm.
-y (syvyys): 100 mm.
-z (korkeus): 140mm.
-MITTAKAAVA: 1 px = 1 mm.
 */
 class Hakka {
+  
+  final int TAPIN_PITUUS = 60;
   
   color puunvari = color(165,83,0);
   
@@ -16,7 +13,7 @@ class Hakka {
   public Hakka() {
     lieriot = new Lierio[REIKIA];
     for (int i = 0; i < REIKIA; i++){
-      lieriot[i] = new Lierio();
+      lieriot[i] = new Lierio(TAPIN_PITUUS);
       lierioitaLuotu ++;
       if(i == 0) {
         lieriot[i].asetaValittu(true);
@@ -72,13 +69,16 @@ class Hakka {
       }
     }
     
-    
-  box(PAKSUUS, 80, 100);
+  fill(255,0,0);
+
+  piirraLaita();
+  
   pushMatrix();
   translate(150, 0, 0);
-  box(PAKSUUS, 80, 100);
+  piirraLaita();
   translate(-75, 0, 0);
-  box(140, 80, 10);
+  fill(puunvari);
+  piirraLevy();
   popMatrix();
     
   // piirretään tapit
@@ -112,7 +112,7 @@ class Hakka {
       fill(puunvari);
      }
     translate(0, tappi.annaPositio(), 0);
-    tappi.piirra(HALKAISIJA/2, 60, 100);
+    tappi.piirra(HALKAISIJA/2, 100);
     translate(0, -tappi.annaPositio(), 0);
     pushMatrix();
     rotateX(PI/2);
@@ -129,6 +129,90 @@ class Hakka {
   popMatrix();
   }
   
+  // piirtää laitapalikan vertekseillä
+  void piirraLaita() {
+    beginShape();
+    vertex(-PAKSUUS/2, -40, -50);
+    vertex(PAKSUUS/2, -40, -50);
+    vertex(PAKSUUS/2, 40, -50);
+    vertex(-PAKSUUS/2, 40, -50);
+  endShape();
+  beginShape();
+    vertex(-PAKSUUS/2, 40, 50);
+    vertex(PAKSUUS/2, 40, 50);
+    vertex(PAKSUUS/2, -40, 50);
+    vertex(-PAKSUUS/2, -40, 50);
+  endShape();
+  
+  beginShape();
+    vertex(-PAKSUUS/2, 40, 50);
+    vertex(PAKSUUS/2, 40, 50);
+    vertex(PAKSUUS/2, 40, -50);
+    vertex(-PAKSUUS/2, 40, -50);
+  endShape();
+  beginShape();
+    vertex(-PAKSUUS/2, -40, -50);
+    vertex(PAKSUUS/2, -40, -50);
+    vertex(PAKSUUS/2, -40, 50);
+    vertex(-PAKSUUS/2, -40, 50);
+  endShape();
+  
+  beginShape();
+    vertex(PAKSUUS/2, -40, 50);
+    vertex(PAKSUUS/2, 40, 50);
+    vertex(PAKSUUS/2, 40, -50);
+    vertex(PAKSUUS/2, -40, -50);
+  endShape();
+  beginShape();
+    vertex(-PAKSUUS/2, -40, -50);
+    vertex(-PAKSUUS/2, 40, -50);
+    vertex(-PAKSUUS/2, 40, 50);
+    vertex(-PAKSUUS/2, -40, 50);
+  endShape();
+  }
+  
+  // piirtää keskilevyn verteksinä
+  void piirraLevy() {
+    beginShape();
+    vertex(-70, -40, -5);
+    vertex(70, -40, -5);
+    vertex(70, 40, -5);
+    vertex(-70, 40, -5);
+  endShape();
+  beginShape();
+    vertex(-70, 40, 5);
+    vertex(70, 40, 5);
+    vertex(70, -40, 5);
+    vertex(-70, -40, 5);
+  endShape();
+  
+  beginShape();
+    vertex(-70, 40, 5);
+    vertex(70, 40, 5);
+    vertex(70, 40, -5);
+    vertex(-70, 40, -5);
+  endShape();
+  beginShape();
+    vertex(-70, -40, -5);
+    vertex(70, -40, -5);
+    vertex(70, -40, 5);
+    vertex(-70, -40, 5);
+  endShape();
+  
+  beginShape();
+    vertex(70, -40, 5);
+    vertex(70, 40, 5);
+    vertex(70, 40, -5);
+    vertex(70, -40, -5);
+  endShape();
+  beginShape();
+    vertex(-70, -40, -5);
+    vertex(-70, 40, -5);
+    vertex(-70, 40, 5);
+    vertex(-70, -40, 5);
+  endShape();
+  }
+  
   /*kertoo, onko kaikki tapit hakattu pohjaan saakka
     jotta hakka voitaisiin kääntää ympäri */
   boolean kaikkiPohjassa() {
@@ -137,7 +221,16 @@ class Hakka {
         return false;
       }
     }
+    kaannaYlosalaisin();
     return true;
+  }
+  
+  void kaannaYlosalaisin() {
+    if(ylosalaisin) {
+      ylosalaisin = false;
+    }
+    else ylosalaisin = true;
+    println(ylosalaisin);
   }
 
 }

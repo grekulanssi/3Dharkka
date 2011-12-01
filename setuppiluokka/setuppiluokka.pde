@@ -56,7 +56,7 @@ void setup() {
 void draw() {
 
   // Change height of the camera with mouseY
-
+  
 
   camera(80.0, mouseY, 150.0, // eyeX, eyeY, eyeZ
          80.0, 0.0, 0.0, // centerX, centerY, centerZ
@@ -73,9 +73,9 @@ void draw() {
   hakka.piirra();
     
   stroke(0);
-  line(-100, 0, 0, 100, 0, 0);
-  line(0, -100, 0, 0, 100, 0);
-  line(0, 0, -100, 0, 0, 100);
+  line(-300, 0, 0, 300, 0, 0);
+  line(0, -300, 0, 0, 300, 0);
+  line(0, 0, -300, 0, 0, 300);
   
             //TAHTIJUTTUJA
   for(int i=0;i<tahtia;i++) {
@@ -106,8 +106,12 @@ void keyReleased() {
     Lierio valittu = hakka.annaValittuTappi();
     int muutos = (int) (255/50);
     if (valittu != null){
-    valittu.muutaPositiota(muutos);
-    println(valittu.annaPositio());
+      valittu.muutaPositiota(muutos);
+      println(valittu.annaPositio());
+      if(hakka.kaikkiPohjassa()) {
+        hakka.kaannaYlosalaisin();
+        println("KAIKKI DOWN");
+      }
     }
     println(lujuus);
     lujuus = 0;

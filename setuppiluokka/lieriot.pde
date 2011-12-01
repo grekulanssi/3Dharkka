@@ -2,13 +2,16 @@ class Lierio {
   
   static final int POHJAPOSITIO = 34;
   
+  int pituus;
+  
   int positio;
   boolean onkoValittu;
   color vari;
   
-  public Lierio(){
+  public Lierio(int pituus){
     
   this.positio = 0;
+  this.pituus = pituus;
   this.onkoValittu = false;
   this.vari = annaVari();
   
@@ -47,26 +50,36 @@ class Lierio {
   }
   
   public boolean onPohjassa() {
-    int kerroin = 1; 
-    if(ylosalaisin) kerroin = -1;
-    return(this.annaPositio() == kerroin*POHJAPOSITIO);
-     
+    return(this.annaPositio() == (ylosalaisin? 1 : -1)*POHJAPOSITIO);
   }
   
   // tapin voi lyoda pohjaan asti, ei syvemmalle
   public void muutaPositiota(int muutos){
-    if (positio <= POHJAPOSITIO && positio >= -POHJAPOSITIO){
-    this.positio -= muutos;
-    if(positio > POHJAPOSITIO) {
-      positio = POHJAPOSITIO;
+    if(ylosalaisin) {
+      if (positio <= POHJAPOSITIO && positio >= -POHJAPOSITIO){
+        this.positio += muutos;
+        if(positio > POHJAPOSITIO) {
+          positio = POHJAPOSITIO;
+        }
+        else if(positio < -POHJAPOSITIO) {
+          positio = -POHJAPOSITIO;
+        }
+      }
     }
-    else if(positio < -POHJAPOSITIO) {
-      positio = -POHJAPOSITIO;
-    }
+    else {
+      if (positio <= POHJAPOSITIO && positio >= -POHJAPOSITIO){
+        this.positio -= muutos;
+        if(positio > POHJAPOSITIO) {
+          positio = POHJAPOSITIO;
+        }
+        else if(positio < -POHJAPOSITIO) {
+          positio = -POHJAPOSITIO;
+        }
+      }
     }
   }
   
-  void piirra(float sade, float pituus, int sarmienMaara) {
+  void piirra(float sade, int sarmienMaara) {
 
     // Itse tappien piirto:
   float kulma = 0;
