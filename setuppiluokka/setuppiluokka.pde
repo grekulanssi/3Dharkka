@@ -7,6 +7,7 @@ PeasyCam cam;*/
 Hakka hakka;
 int lujuus; //kuinka lujaa hakkaa lyodaan
 boolean onkoPohjassa; // painetaanko valilyontia
+boolean ylosalaisin; // onko hakka ylosalaisin suhteessa alkup. asentoon
 
 //hakassa olevien reikien lukumäärä:
 final int REIKIA = 8;
@@ -50,6 +51,7 @@ void setup() {
   cam.setMinimumDistance(200);
   cam.setMaximumDistance(500);*/
 }
+
 
 void draw() {
 

@@ -1,5 +1,7 @@
 class Lierio {
   
+  static final int POHJAPOSITIO = 34;
+  
   int positio;
   boolean onkoValittu;
   color vari;
@@ -27,8 +29,8 @@ class Lierio {
     
   }
   
-  public void asetaValittu(boolean a) {
-    this.onkoValittu = a;
+  public void asetaValittu(boolean valinta) {
+    this.onkoValittu = valinta;
   }
   
   public boolean onkoValittu() {
@@ -44,10 +46,23 @@ class Lierio {
     return this.positio;
   }
   
+  public boolean onPohjassa() {
+    int kerroin = 1; 
+    if(ylosalaisin) kerroin = -1;
+    return(this.annaPositio() == kerroin*POHJAPOSITIO);
+     
+  }
+  
   // tapin voi lyoda pohjaan asti, ei syvemmalle
   public void muutaPositiota(int muutos){
-    if (positio <= 30 && positio >= -30){
+    if (positio <= POHJAPOSITIO && positio >= -POHJAPOSITIO){
     this.positio -= muutos;
+    if(positio > POHJAPOSITIO) {
+      positio = POHJAPOSITIO;
+    }
+    else if(positio < -POHJAPOSITIO) {
+      positio = -POHJAPOSITIO;
+    }
     }
   }
   

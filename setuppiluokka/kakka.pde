@@ -25,9 +25,9 @@ class Hakka {
     }
   }
   
-  public void hakanPainallus(boolean a) {
+  public void hakanPainallus(boolean suunta) {
    
-   if(a) {
+   if(suunta) {
      if(this.valitunIndeksi != REIKIA) {
        this.valitunIndeksi++;
      }
@@ -56,6 +56,10 @@ class Hakka {
   }
   
   void piirra() {
+    
+    if(kaikkiPohjassa()) {
+      return;
+    }
     
     fill(puunvari);
     //println(this.valitunIndeksi);
@@ -124,5 +128,17 @@ class Hakka {
   }
   popMatrix();
   }
+  
+  /*kertoo, onko kaikki tapit hakattu pohjaan saakka
+    jotta hakka voitaisiin kääntää ympäri */
+  boolean kaikkiPohjassa() {
+    for(int t = 0; t < REIKIA; t++) {
+      if(!lieriot[t].onPohjassa()) {
+        return false;
+      }
+    }
+    return true;
+  }
+
 }
 
