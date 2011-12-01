@@ -14,6 +14,9 @@ final int REIKIA = 8;
 final int PAKSUUS = 12;
 //Yhden reijän halkaisija 
 final int HALKAISIJA = 12;
+
+int lierioitaLuotu;
+
 //TAHTIJUTTUJA
 int tahtia=400;
 final int SPREAD=94;
@@ -30,6 +33,8 @@ void setup() {
   hakka = new Hakka();
   lujuus = 0;
   onkoPohjassa = false;
+  
+  lierioitaLuotu = 0;
   
   puu = loadImage("wood.png");
   

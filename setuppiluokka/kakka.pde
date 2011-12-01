@@ -17,6 +17,7 @@ class Hakka {
     lieriot = new Lierio[REIKIA];
     for (int i = 0; i < REIKIA; i++){
       lieriot[i] = new Lierio();
+      lierioitaLuotu ++;
       if(i == 0) {
         lieriot[i].asetaValittu(true);
         this.valitunIndeksi = i;
@@ -97,11 +98,10 @@ class Hakka {
      translate(0, 0, -35*(i-(i-1)));
      }
      if(tappi.onkoValittu()) {
-      //fill(255);
       if(lujuus <= 255) {
        fill(lujuus, 0, 0); 
       } else {
-       fill(255, 10, 10); 
+       fill(255,255,255); 
       }
      }
      else {
