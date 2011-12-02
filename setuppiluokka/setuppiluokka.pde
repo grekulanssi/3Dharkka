@@ -24,19 +24,21 @@ final float SPEED = 1.9;
 Star[] s = new Star[tahtia];
 
 PImage puu;
+PImage lattia;
 
 void setup() {
   
   size(800, 400, OPENGL);
   fill(112);
   hakka = new Hakka();
-  lujuus = 0;
+  lujuus = 10;
   onkoPohjassa = false;
   
   lierioitaLuotu = 0;
   klikattu = 0;
   
   puu = loadImage("wood.png");
+  lattia = loadImage("lattia.png");
   
   //TAHTIJUTTUJA
   CX = width/2;
@@ -71,7 +73,8 @@ void draw() {
 
   fill(200);
   beginShape();
-  texture(puu);
+  texture(lattia);
+  textureMode(NORMALIZED);
   vertex(-500,-500,-50, 0,0);
   vertex(-500, 500,-50, 0,1);
   vertex(500, 500,-50, 1,1);
@@ -115,7 +118,7 @@ void keyPressed() {
  // valilyonnin painaminen muuttaa hakan lyonnin lujuutta
  if(key == ' ') {
    if (lujuus < 330){
-   lujuus+=5;
+   lujuus+=10;
    }
    onkoPohjassa = true;
  }
@@ -138,7 +141,7 @@ void keyReleased() {
       }
     }
     println(lujuus);
-    lujuus = 0;
+    lujuus = 10;
     onkoPohjassa = false;
   }
   
