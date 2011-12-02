@@ -50,26 +50,17 @@ void setup() {
 void draw() {
 
   // Change height of the camera with mouseY
-<<<<<<< HEAD
   
-
-  camera(80.0, 150.0, 150.0, // eyeX, eyeY, eyeZ
-=======
-  camera(80.0, mouseY, 150.0, // eyeX, eyeY, eyeZ
->>>>>>> 83ff3ceb6dcb2f13cb0cf451226bdfdc67668be3
+  camera(80.0, 200.0 + mouseY, 150.0, // eyeX, eyeY, eyeZ
          80.0, 0.0, 0.0, // centerX, centerY, centerZ
          0.0, 1.0, 0.0); // upX, upY, upZ
 
-  
+  rotateZ(frameCount/100.0);
   ambientLight(200,200,200);
   directionalLight(110, 110, 110, 0.5, -0.5, 0);
-  
-<<<<<<< HEAD
+
  background(0);
   
-=======
-  background(0);  
->>>>>>> 83ff3ceb6dcb2f13cb0cf451226bdfdc67668be3
   noStroke();
 
   hakka.piirra();
