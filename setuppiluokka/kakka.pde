@@ -80,21 +80,23 @@ class Hakka {
     
   fill(255,0,0);
 
-  piirraLaita();
-  
   pushMatrix();
-  translate(150, 0, 0);
-  piirraLaita();
-  translate(-75, 0, 0);
-  fill(puunvari);
-  piirraLevy();
+    translate(-75,0,0);
+    piirraLaita();
+    
+    translate(150, 0, 0);
+    piirraLaita();
+  
+    translate(-75, 0, 0);
+    fill(puunvari);
+    piirraLevy();
   popMatrix();
     
   // piirretään tapit
   
   pushMatrix();
   rotateX(PI/2);
-  translate(0, -20, -20);
+  translate(-75, -20, -20);
   
   for(int i = 0; i < REIKIA; i++){
     Lierio tappi = lieriot[i];
