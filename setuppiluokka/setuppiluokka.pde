@@ -58,15 +58,16 @@ void draw() {
   // Change height of the camera with mouseY
   
 
-  camera(80.0, mouseY, 150.0, // eyeX, eyeY, eyeZ
+  camera(80.0, 150.0, 150.0, // eyeX, eyeY, eyeZ
          80.0, 0.0, 0.0, // centerX, centerY, centerZ
          0.0, 1.0, 0.0); // upX, upY, upZ
+
   
   //lights();
   ambientLight(200,200,200);
   directionalLight(110, 110, 110, 0.5, -0.5, 0);
   
-  background(0);
+ background(0);
   
   noStroke();
 
