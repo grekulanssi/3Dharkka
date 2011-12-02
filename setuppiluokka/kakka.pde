@@ -140,49 +140,57 @@ class Hakka {
   
   // piirtää laitapalikan vertekseillä
   void piirraLaita() {
-    beginShape();
-    vertex(-PAKSUUS/2, -40, -50);
-    vertex(PAKSUUS/2, -40, -50);
-    vertex(PAKSUUS/2, 40, -50);
-    vertex(-PAKSUUS/2, 40, -50);
+    //ylä- ja alareunat (päädyt)
+  beginShape();
+  texture(puu);
+  textureMode(NORMALIZED);
+    vertex(-PAKSUUS/2, -40, -50, 0,0);
+    vertex(PAKSUUS/2, -40, -50, 1,0);
+    vertex(PAKSUUS/2, 40, -50, 1,0.2);
+    vertex(-PAKSUUS/2, 40, -50, 0,0.2);
   endShape();
   beginShape();
-    vertex(-PAKSUUS/2, 40, 50);
-    vertex(PAKSUUS/2, 40, 50);
-    vertex(PAKSUUS/2, -40, 50);
-    vertex(-PAKSUUS/2, -40, 50);
+  texture(puu);
+    vertex(-PAKSUUS/2, 40, 50, 0,0);
+    vertex(PAKSUUS/2, 40, 50, 0,1);
+    vertex(PAKSUUS/2, -40, 50, 0.2,1);
+    vertex(-PAKSUUS/2, -40, 50, 0.2,0);
   endShape();
-  
+    //pitkät sivut, reunat
   beginShape();
-    vertex(-PAKSUUS/2, 40, 50);
-    vertex(PAKSUUS/2, 40, 50);
-    vertex(PAKSUUS/2, 40, -50);
-    vertex(-PAKSUUS/2, 40, -50);
-  endShape();
-  beginShape();
-    vertex(-PAKSUUS/2, -40, -50);
-    vertex(PAKSUUS/2, -40, -50);
-    vertex(PAKSUUS/2, -40, 50);
-    vertex(-PAKSUUS/2, -40, 50);
-  endShape();
-  
-  beginShape();
-    vertex(PAKSUUS/2, -40, 50);
-    vertex(PAKSUUS/2, 40, 50);
-    vertex(PAKSUUS/2, 40, -50);
-    vertex(PAKSUUS/2, -40, -50);
+  texture(puu);
+    vertex(-PAKSUUS/2, 40, 50, 0.4,0);
+    vertex(PAKSUUS/2, 40, 50, 0.6,0);
+    vertex(PAKSUUS/2, 40, -50, 0.6,1);
+    vertex(-PAKSUUS/2, 40, -50, 0.4,1);
   endShape();
   beginShape();
-    vertex(-PAKSUUS/2, -40, -50);
-    vertex(-PAKSUUS/2, 40, -50);
-    vertex(-PAKSUUS/2, 40, 50);
-    vertex(-PAKSUUS/2, -40, 50);
+  texture(puu);
+    vertex(-PAKSUUS/2, -40, -50, 0.4,0);
+    vertex(PAKSUUS/2, -40, -50, 0.6,0);
+    vertex(PAKSUUS/2, -40, 50, 0.6,1);
+    vertex(-PAKSUUS/2, -40, 50, 0.4,1);
+  endShape();
+    //sisä- ja ulkolaidat
+  beginShape();
+  texture(puu);
+    vertex(PAKSUUS/2, -40, 50, 0,0);
+    vertex(PAKSUUS/2, 40, 50, 1,0);
+    vertex(PAKSUUS/2, 40, -50, 1,1);
+    vertex(PAKSUUS/2, -40, -50, 0,1);
+  endShape();
+  beginShape();
+  texture(puu);
+    vertex(-PAKSUUS/2, -40, -50, 0,0);
+    vertex(-PAKSUUS/2, 40, -50, 1,0);
+    vertex(-PAKSUUS/2, 40, 50, 1,1);
+    vertex(-PAKSUUS/2, -40, 50, 0,1);
   endShape();
   }
   
   // piirtää keskilevyn verteksinä
   void piirraLevy() {
-    beginShape();
+  beginShape();
     vertex(-70, -40, -5);
     vertex(70, -40, -5);
     vertex(70, 40, -5);
