@@ -15,10 +15,10 @@ final int HALKAISIJA = 12;
 int lierioitaLuotu;
 
 //TAHTIJUTTUJA
-int tahtia=400;
-final int SPREAD=94;
-int CX,CY;
-final float SPEED=1.9;
+int tahtia = 400;
+final int SPREAD = 200;
+int CX, CY;
+final float SPEED = 1.9;
 
 Star[] s = new Star[tahtia];
 
@@ -37,10 +37,11 @@ void setup() {
   puu = loadImage("wood.png");
   
   //TAHTIJUTTUJA
-  CX=width/2 ; CY=height/2;
+  CX = width/2;
+  CY = height/2;
     
-  for (int i=0;i<tahtia;i++) {
-    s[i]=new Star();
+  for (int i = 0; i < tahtia; i++) {
+    s[i] = new Star();
     s[i].SetPosition();
   }
   
@@ -95,7 +96,7 @@ void keyPressed() {
  
  // valilyonnin painaminen muuttaa hakan lyonnin lujuutta
  if(key == ' ') {
-   if (lujuus < 300){
+   if (lujuus < 330){
    lujuus+=5;
    }
    onkoPohjassa = true;
