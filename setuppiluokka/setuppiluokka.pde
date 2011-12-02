@@ -64,7 +64,6 @@ void draw() {
   directionalLight(110, 110, 110, 0, 0, 1);
 
  background(0);
- //sphere(1000);
   
   noStroke();
 
