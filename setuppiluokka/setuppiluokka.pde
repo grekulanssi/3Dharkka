@@ -166,7 +166,7 @@ void keyPressed() {
  
  // valilyonnin painaminen muuttaa hakan lyonnin lujuutta
  if(key == ' ') {
-   if (lujuus < 330){
+   if (lujuus < 400){
    lujuus+=10;
    }
    onkoPohjassa = true;

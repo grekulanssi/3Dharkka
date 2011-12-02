@@ -1,6 +1,6 @@
 class Lierio {
   
-  static final int MAX_POSITIO = 34;//TESTAA TÄHÄN OIKEA ARVO
+  static final int MAX_POSITIO = 12;//TESTAA TÄHÄN OIKEA ARVO
   static final int MIN_POSITIO = -34;
   
   int pituus;
