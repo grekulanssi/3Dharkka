@@ -59,6 +59,8 @@ void draw() {
      
   rotateZ(frameCount / 100.0);
 
+  ambientLight(200,200,200);
+
   directionalLight(110, 110, 110, 0.5, -0.5, 0);
   directionalLight(110, 110, 110, -0.5, 0.5, 0);
   directionalLight(110, 110, 110, 0, 0, 1);
