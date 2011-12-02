@@ -92,7 +92,9 @@ void keyPressed() {
  
  // valilyonnin painaminen muuttaa hakan lyonnin lujuutta
  if(key == ' ') {
+   if (lujuus < 300){
    lujuus+=5;
+   }
    onkoPohjassa = true;
  }
 }
@@ -108,7 +110,6 @@ void keyReleased() {
   }
     if (valittu != null){
       valittu.muutaPositiota(muutos);
-      println(valittu.annaPositio());
       if(hakka.kaikkiPohjassa()) {
         hakka.kaannaYlosalaisin();
         println("KAIKKI DOWN");
