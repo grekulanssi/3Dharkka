@@ -47,7 +47,7 @@ void setup() {
   walls[0] = loadImage("anssi.jpg");
   walls[1] = loadImage("artti.jpg");
   walls[2] = loadImage("tiina.jpg");
-  walls[3] = loadImage("tiina.jpg");
+  walls[3] = loadImage("oliver.jpg");
   
   //TAHTIJUTTUJA
   CX = width/2;
