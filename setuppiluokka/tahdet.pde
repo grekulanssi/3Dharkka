@@ -1,15 +1,10 @@
 class Star { 
   float x = 0, y = 0, z = 0, sx = 0, sy = 0;
   void SetPosition(){
-<<<<<<< HEAD
-    z=(float) random(300,255);
-    x=(float) random(-2000,2000);
-    y=(float) random(-2000,2000);
-=======
+
     z= (float) random(300, 255);
     x= (float) random(-1000, 1000);
     y= (float) random(-1000, 1000);
->>>>>>> a78dc96507512228fce1d94fbf38b82a7ead4e76
   }
   void DrawStar(){
     pushMatrix();
@@ -23,11 +18,8 @@ class Star {
     if (sx < 0 | sx > width*2){
 	this.SetPosition();
     }
-<<<<<<< HEAD
-    if (sy<-2000 | sy>height * 1.5){
-=======
+
     if (sy < -1000 | sy > height * 1.5){
->>>>>>> a78dc96507512228fce1d94fbf38b82a7ead4e76
 	this.SetPosition();
     }
     fill(color(255 - (int) z, 255 - (int) z, 255 - (int) z));

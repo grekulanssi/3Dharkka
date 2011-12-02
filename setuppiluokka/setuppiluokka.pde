@@ -59,13 +59,6 @@ void draw() {
      
   rotateZ(frameCount / 100.0);
 
-<<<<<<< HEAD
-  rotateZ(frameCount/100.0);
-  //ambientLight(255,250,250);
-  lights();
-=======
-  ambientLight(200,200,200);
->>>>>>> a78dc96507512228fce1d94fbf38b82a7ead4e76
   directionalLight(110, 110, 110, 0.5, -0.5, 0);
   directionalLight(110, 110, 110, -0.5, 0.5, 0);
   directionalLight(110, 110, 110, 0, 0, 1);
