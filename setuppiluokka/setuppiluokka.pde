@@ -15,10 +15,10 @@ final int HALKAISIJA = 12;
 int lierioitaLuotu;
 
 //TAHTIJUTTUJA
-int tahtia=400;
-final int SPREAD=94;
-int CX,CY;
-final float SPEED=1.9;
+int tahtia = 400;
+final int SPREAD = 200;
+int CX, CY;
+final float SPEED = 1.9;
 
 Star[] s = new Star[tahtia];
 
@@ -37,10 +37,11 @@ void setup() {
   puu = loadImage("wood.png");
   
   //TAHTIJUTTUJA
-  CX=width/2 ; CY=height/2;
+  CX = width/2;
+  CY = height/2;
     
-  for (int i=0;i<tahtia;i++) {
-    s[i]=new Star();
+  for (int i = 0; i < tahtia; i++) {
+    s[i] = new Star();
     s[i].SetPosition();
   }
   
@@ -50,14 +51,19 @@ void setup() {
 void draw() {
 
   // Change height of the camera with mouseY
-  
   camera(80.0, 200.0 + mouseY, 150.0, // eyeX, eyeY, eyeZ
          80.0, 0.0, 0.0, // centerX, centerY, centerZ
          0.0, 1.0, 0.0); // upX, upY, upZ
+         
+  rotateZ(frameCount / 100.0);
 
+<<<<<<< HEAD
   rotateZ(frameCount/100.0);
   //ambientLight(255,250,250);
   lights();
+=======
+  ambientLight(200,200,200);
+>>>>>>> a78dc96507512228fce1d94fbf38b82a7ead4e76
   directionalLight(110, 110, 110, 0.5, -0.5, 0);
   directionalLight(110, 110, 110, -0.5, 0.5, 0);
   directionalLight(110, 110, 110, 0, 0, 1);
@@ -97,9 +103,13 @@ void keyPressed() {
    hakka.hakanPainallus(false);
  }
  
+ if(key == 'a') {
+  hakka.kaannaYlosalaisin(); 
+ }
+ 
  // valilyonnin painaminen muuttaa hakan lyonnin lujuutta
  if(key == ' ') {
-   if (lujuus < 300){
+   if (lujuus < 330){
    lujuus+=5;
    }
    onkoPohjassa = true;
@@ -128,4 +138,3 @@ void keyReleased() {
   }
   
 }
-

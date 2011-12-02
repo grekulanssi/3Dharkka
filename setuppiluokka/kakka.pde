@@ -80,21 +80,23 @@ class Hakka {
     
   fill(255,0,0);
 
-  piirraLaita();
-  
   pushMatrix();
-  translate(150, 0, 0);
-  piirraLaita();
-  translate(-75, 0, 0);
-  fill(puunvari);
-  piirraLevy();
+    translate(-75,0,0);
+    piirraLaita();
+    
+    translate(150, 0, 0);
+    piirraLaita();
+  
+    translate(-75, 0, 0);
+    fill(puunvari);
+    piirraLevy();
   popMatrix();
     
   // piirretään tapit
   
   pushMatrix();
   rotateX(PI/2);
-  translate(0, -20, -20);
+  translate(-75, -20, -20);
   
   for(int i = 0; i < REIKIA; i++){
     Lierio tappi = lieriot[i];
@@ -144,17 +146,17 @@ class Hakka {
   beginShape();
   texture(puu);
   textureMode(NORMALIZED);
-    vertex(-PAKSUUS/2, -40, -50, 0,0);
-    vertex(PAKSUUS/2, -40, -50, 1,0);
-    vertex(PAKSUUS/2, 40, -50, 1,0.2);
-    vertex(-PAKSUUS/2, 40, -50, 0,0.2);
+    vertex(-PAKSUUS/2, -40, -50, 0.4,0.6);
+    vertex(PAKSUUS/2, -40, -50, 0.6,0.4);
+    vertex(PAKSUUS/2, 40, -50, 0.6,0.6);
+    vertex(-PAKSUUS/2, 40, -50, 0.4,0.4);
   endShape();
   beginShape();
   texture(puu);
-    vertex(-PAKSUUS/2, 40, 50, 0,0);
-    vertex(PAKSUUS/2, 40, 50, 0,1);
-    vertex(PAKSUUS/2, -40, 50, 0.2,1);
-    vertex(-PAKSUUS/2, -40, 50, 0.2,0);
+    vertex(-PAKSUUS/2, 40, 50, 0.4,0.4);
+    vertex(PAKSUUS/2, 40, 50, 0.4,0.6);
+    vertex(PAKSUUS/2, -40, 50, 0.6,0.6);
+    vertex(-PAKSUUS/2, -40, 50, 0.6,0.4);
   endShape();
     //pitkät sivut, reunat
   beginShape();
@@ -191,29 +193,34 @@ class Hakka {
   // piirtää keskilevyn verteksinä
   void piirraLevy() {
   beginShape();
-    vertex(-70, -40, -5);
-    vertex(70, -40, -5);
-    vertex(70, 40, -5);
-    vertex(-70, 40, -5);
+  texture(puu);
+  textureMode(NORMALIZED);
+    vertex(-70, -40, -5, 0,0);
+    vertex(70, -40, -5, 1,0);
+    vertex(70, 40, -5, 1,1);
+    vertex(-70, 40, -5, 0,1);
   endShape();
   beginShape();
-    vertex(-70, 40, 5);
-    vertex(70, 40, 5);
-    vertex(70, -40, 5);
-    vertex(-70, -40, 5);
+  texture(puu); 
+    vertex(-70, 40, 5, 0,1);
+    vertex(70, 40, 5, 1,1);
+    vertex(70, -40, 5, 1,0);
+    vertex(-70, -40, 5, 0,0);
   endShape();
   
   beginShape();
-    vertex(-70, 40, 5);
-    vertex(70, 40, 5);
-    vertex(70, 40, -5);
-    vertex(-70, 40, -5);
+  texture(puu);
+    vertex(-70, 40, 5, 0,0.6);
+    vertex(70, 40, 5, 1,0.6);
+    vertex(70, 40, -5, 1,0.4);
+    vertex(-70, 40, -5, 0,0.4);
   endShape();
   beginShape();
-    vertex(-70, -40, -5);
-    vertex(70, -40, -5);
-    vertex(70, -40, 5);
-    vertex(-70, -40, 5);
+  texture(puu);
+    vertex(-70, -40, -5, 0,0.4);
+    vertex(70, -40, -5, 1,0.4);
+    vertex(70, -40, 5, 1,0.6);
+    vertex(-70, -40, 5, 0,0.6);
   endShape();
   
   beginShape();
