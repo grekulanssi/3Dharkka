@@ -23,7 +23,7 @@ class Hakka {
   }
   
   public void hakanPainallus(boolean suunta) {
-   
+    // tassa metodissa muutetaan valitun hakan indeksia
    if(suunta) {
      if(this.valitunIndeksi != REIKIA) {
        this.valitunIndeksi++;
