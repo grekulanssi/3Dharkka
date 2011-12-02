@@ -102,7 +102,10 @@ void keyReleased() {
   // kun valilyonnista paastetaan irti muutetaan hakan sijaintia lyonnin lujuuden suhteen
   if(key == ' ') {
     Lierio valittu = hakka.annaValittuTappi();
-    int muutos = (int) (255/50);
+    int muutos = (int) (lujuus/9);
+    if (muutos < 1){
+      muutos = 1;
+  }
     if (valittu != null){
       valittu.muutaPositiota(muutos);
       println(valittu.annaPositio());
