@@ -5,6 +5,10 @@ int lujuus; //kuinka lujaa hakkaa lyodaan
 boolean onkoPohjassa; // painetaanko valilyontia
 boolean ylosalaisin; // onko hakka ylosalaisin suhteessa alkup. asentoon
 
+boolean kaantoKaynnissa;
+int kaantokello;
+int kaanto;
+
 //hakassa olevien reikien lukumäärä:
 final int REIKIA = 8;
 //Yhden lankun paksuus
@@ -130,7 +134,26 @@ void draw() {
     vertex(500,500,-50, 1,1);
   endShape();  
 
-  hakka.piirra();
+  if(kaantoKaynnissa) {
+    kaanto ++;//(millis()-kaantokello);
+    pushMatrix();
+      rotateX(PI/kaanto);
+        hakka.piirra();
+    popMatrix();
+    if(kaanto >= 200) {
+      kaantoKaynnissa = false;
+      kaanto = 0;
+    }
+  }
+  else {
+    if(ylosalaisin) {
+      pushMatrix();
+        rotateX(PI);
+          hakka.piirra();
+      popMatrix();
+    }
+    else hakka.piirra();
+  }
     
   stroke(color(255,0,0));
   line(-300, 0, 0, 300, 0, 0);
@@ -149,6 +172,7 @@ void draw() {
 }
 
 void keyPressed() {
+  if(kaantoKaynnissa) return;
  
  // vaihdetaan valittua hakkaa hakanPainallus()-metodin avulla
  // riippuen siita painaako nuolta ylos- vai alaspain
@@ -161,7 +185,7 @@ void keyPressed() {
  }
  
  if(key == 'a') {
-  hakka.kaannaYlosalaisin(); 
+  kaannaHakkaYmpari(); 
  }
  
  // valilyonnin painaminen muuttaa hakan lyonnin lujuutta
@@ -185,7 +209,7 @@ void keyReleased() {
     if (valittu != null){
       valittu.muutaPositiota(muutos);
       if(hakka.kaikkiPohjassa()) {
-        hakka.kaannaYlosalaisin();
+        kaannaHakkaYmpari();
         println("KAIKKI DOWN");
       }
     }
@@ -195,3 +219,13 @@ void keyReleased() {
   }
   
 }
+
+void kaannaHakkaYmpari() {
+    kaantoKaynnissa = true;
+    kaantokello = millis();
+    if(ylosalaisin) {
+      ylosalaisin = false;
+    }
+    else ylosalaisin = true;
+    println(ylosalaisin);
+  }

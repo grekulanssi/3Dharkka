@@ -4,8 +4,6 @@ Hakka on H-kirjaimen muotoinen lasten lelu.
 class Hakka {
   
   final int TAPIN_PITUUS = 60;
-  int kaantokello;
-  boolean kaantoKaynnissa;
   color puunvari = color(165,83,0);
   
   int valitunIndeksi;
@@ -245,18 +243,8 @@ class Hakka {
         return false;
       }
     }
-    if(!kaantoKaynnissa) kaannaYlosalaisin();
+    if(!kaantoKaynnissa) kaannaHakkaYmpari();
     return true;
-  }
-  
-  void kaannaYlosalaisin() {
-    kaantoKaynnissa = true;
-    kaantokello = millis();
-    if(ylosalaisin) {
-      ylosalaisin = false;
-    }
-    else ylosalaisin = true;
-    println(ylosalaisin);
   }
 }
 
