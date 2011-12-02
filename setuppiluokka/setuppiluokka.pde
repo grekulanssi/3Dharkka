@@ -13,6 +13,7 @@ final int PAKSUUS = 12;
 final int HALKAISIJA = 12;
 
 int lierioitaLuotu;
+int klikattu; // maarittaa sen pyoritetaanko hakkaa vai ei
 
 //TAHTIJUTTUJA
 int tahtia = 400;
@@ -33,6 +34,7 @@ void setup() {
   onkoPohjassa = false;
   
   lierioitaLuotu = 0;
+  klikattu = 0;
   
   puu = loadImage("wood.png");
   
@@ -54,7 +56,7 @@ void draw() {
   camera(80.0, 200.0 + mouseY, 150.0, // eyeX, eyeY, eyeZ
          80.0, 0.0, 0.0, // centerX, centerY, centerZ
          0.0, 1.0, 0.0); // upX, upY, upZ
-         
+     
   rotateZ(frameCount / 100.0);
 
   ambientLight(200,200,200);
