@@ -51,12 +51,11 @@ class Lierio {
   }
   
   public boolean onPohjassa() {
-    return(this.annaPositio() == (ylosalaisin? MIN_POSITIO : MAX_POSITIO));
+    return(this.annaPositio() == (ylosalaisin? MAX_POSITIO : MIN_POSITIO));
   }
   
   // tapin voi lyoda pohjaan asti, ei syvemmalle
   public void muutaPositiota(int muutos){
-   // if(ylosalaisin) {
       if (positio >= MIN_POSITIO && positio <= MAX_POSITIO){
         this.positio = (ylosalaisin? this.positio + muutos : this.positio - muutos);
         if(positio < MIN_POSITIO) {
@@ -66,18 +65,6 @@ class Lierio {
           positio = MAX_POSITIO;
         }
       }
-    //}
-    //else {
-  /*    if (positio <= MIN_POSITIO && positio >= -MIN_POSITIO){
-        this.positio -= muutos;
-        if(positio > MIN_POSITIO) {
-          positio = MIN_POSITIO;
-        }
-        else if(positio < -MIN_POSITIO) {
-          positio = -MIN_POSITIO;
-        }
-      }*/
-   // }
   }
   
   void piirra(float sade, int sarmienMaara) {
