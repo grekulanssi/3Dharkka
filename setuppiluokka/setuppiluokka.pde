@@ -53,8 +53,8 @@ void setup() {
 void draw() {
 
   // Change height of the camera with mouseY
-  camera(80.0, 200.0 + mouseY, 150.0, // eyeX, eyeY, eyeZ
-         80.0, 0.0, 0.0, // centerX, centerY, centerZ
+  camera(0.0, 200.0 + mouseY, 150.0, // eyeX, eyeY, eyeZ
+         0.0, 0.0, 0.0, // centerX, centerY, centerZ
          0.0, 1.0, 0.0); // upX, upY, upZ
      
   rotateZ(frameCount / 100.0);
@@ -74,6 +74,15 @@ void draw() {
  //sphere(1000);
   
   noStroke();
+
+  fill(200);
+  beginShape();
+  texture(puu);
+  vertex(-500,-500,-50, 0,0);
+  vertex(-500, 500,-50, 0,1);
+  vertex(500, 500,-50, 1,1);
+  vertex(500,-500,-50, 1,0);
+  endShape();
 
   hakka.piirra();
     

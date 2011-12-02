@@ -56,7 +56,7 @@ class Hakka {
   void piirra() {
     
     if(kaikkiPohjassa()) {
-      return;
+      
       /*if(kaantoKaynnissa) {
         int kulunutAikaMs = millis() - kaantokello;
         rotateX(kulunutAikaMs/1000);
