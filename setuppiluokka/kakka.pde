@@ -251,6 +251,6 @@ class Hakka {
     else ylosalaisin = true;
     println(ylosalaisin);
   }
-
 }
+
 

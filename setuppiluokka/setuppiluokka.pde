@@ -56,10 +56,14 @@ void draw() {
          0.0, 1.0, 0.0); // upX, upY, upZ
 
   rotateZ(frameCount/100.0);
-  ambientLight(200,200,200);
+  //ambientLight(255,250,250);
+  lights();
   directionalLight(110, 110, 110, 0.5, -0.5, 0);
+  directionalLight(110, 110, 110, -0.5, 0.5, 0);
+  directionalLight(110, 110, 110, 0, 0, 1);
 
  background(0);
+ //sphere(1000);
   
   noStroke();
 
@@ -75,9 +79,9 @@ void draw() {
   stroke(0);
   
   // TAHTIJUTTUJA
-  for (int i=0;i<tahtia;i++) {
+ /* for (int i=0;i<tahtia;i++) {
     s[i].DrawStar();
-  }
+  }*/
   
 }
 
