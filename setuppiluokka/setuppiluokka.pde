@@ -94,7 +94,9 @@ void keyPressed() {
  
  // valilyonnin painaminen muuttaa hakan lyonnin lujuutta
  if(key == ' ') {
+   if (lujuus < 300){
    lujuus+=5;
+   }
    onkoPohjassa = true;
  }
 }
@@ -104,10 +106,12 @@ void keyReleased() {
   // kun valilyonnista paastetaan irti muutetaan hakan sijaintia lyonnin lujuuden suhteen
   if(key == ' ') {
     Lierio valittu = hakka.annaValittuTappi();
-    int muutos = (int) (255/50);
+    int muutos = (int) (lujuus/9);
+    if (muutos < 1){
+      muutos = 1;
+  }
     if (valittu != null){
       valittu.muutaPositiota(muutos);
-      println(valittu.annaPositio());
       if(hakka.kaikkiPohjassa()) {
         hakka.kaannaYlosalaisin();
         println("KAIKKI DOWN");
