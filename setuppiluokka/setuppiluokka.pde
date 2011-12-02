@@ -94,6 +94,10 @@ void keyPressed() {
    hakka.hakanPainallus(false);
  }
  
+ if(key == 'a') {
+  hakka.kaannaYlosalaisin(); 
+ }
+ 
  // valilyonnin painaminen muuttaa hakan lyonnin lujuutta
  if(key == ' ') {
    if (lujuus < 330){
