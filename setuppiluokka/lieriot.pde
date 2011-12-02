@@ -1,6 +1,7 @@
 class Lierio {
   
   static final int POHJAPOSITIO = 34;
+  static final int PINTAPOSITIO = -24;
   
   int pituus;
   
@@ -50,24 +51,24 @@ class Lierio {
   }
   
   public boolean onPohjassa() {
-    return(this.annaPositio() == (ylosalaisin? 1 : -1)*POHJAPOSITIO);
+    return(this.annaPositio() == (ylosalaisin? POHJAPOSITIO : PINTAPOSITIO));
   }
   
   // tapin voi lyoda pohjaan asti, ei syvemmalle
   public void muutaPositiota(int muutos){
-    if(ylosalaisin) {
-      if (positio <= POHJAPOSITIO && positio >= -POHJAPOSITIO){
-        this.positio += muutos;
+   // if(ylosalaisin) {
+      if (positio <= POHJAPOSITIO && positio >= PINTAPOSITIO){
+        this.positio = (ylosalaisin? this.positio + muutos : this.positio - muutos);
         if(positio > POHJAPOSITIO) {
           positio = POHJAPOSITIO;
         }
-        else if(positio < -POHJAPOSITIO) {
-          positio = -POHJAPOSITIO;
+        else if(positio < PINTAPOSITIO) {
+          positio = PINTAPOSITIO;
         }
       }
-    }
-    else {
-      if (positio <= POHJAPOSITIO && positio >= -POHJAPOSITIO){
+    //}
+    //else {
+  /*    if (positio <= POHJAPOSITIO && positio >= -POHJAPOSITIO){
         this.positio -= muutos;
         if(positio > POHJAPOSITIO) {
           positio = POHJAPOSITIO;
@@ -75,8 +76,8 @@ class Lierio {
         else if(positio < -POHJAPOSITIO) {
           positio = -POHJAPOSITIO;
         }
-      }
-    }
+      }*/
+   // }
   }
   
   void piirra(float sade, int sarmienMaara) {
