@@ -1,7 +1,7 @@
 class Lierio {
   
-  static final int POHJAPOSITIO = 34;
-  static final int PINTAPOSITIO = -24;
+  static final int MAX_POSITIO = 34;//TESTAA TÄHÄN OIKEA ARVO
+  static final int MIN_POSITIO = -34;
   
   int pituus;
   
@@ -51,30 +51,30 @@ class Lierio {
   }
   
   public boolean onPohjassa() {
-    return(this.annaPositio() == (ylosalaisin? POHJAPOSITIO : PINTAPOSITIO));
+    return(this.annaPositio() == (ylosalaisin? MIN_POSITIO : MAX_POSITIO));
   }
   
   // tapin voi lyoda pohjaan asti, ei syvemmalle
   public void muutaPositiota(int muutos){
    // if(ylosalaisin) {
-      if (positio <= POHJAPOSITIO && positio >= PINTAPOSITIO){
+      if (positio >= MIN_POSITIO && positio <= MAX_POSITIO){
         this.positio = (ylosalaisin? this.positio + muutos : this.positio - muutos);
-        if(positio > POHJAPOSITIO) {
-          positio = POHJAPOSITIO;
+        if(positio < MIN_POSITIO) {
+          positio = MIN_POSITIO;
         }
-        else if(positio < PINTAPOSITIO) {
-          positio = PINTAPOSITIO;
+        else if(positio > MAX_POSITIO) {
+          positio = MAX_POSITIO;
         }
       }
     //}
     //else {
-  /*    if (positio <= POHJAPOSITIO && positio >= -POHJAPOSITIO){
+  /*    if (positio <= MIN_POSITIO && positio >= -MIN_POSITIO){
         this.positio -= muutos;
-        if(positio > POHJAPOSITIO) {
-          positio = POHJAPOSITIO;
+        if(positio > MIN_POSITIO) {
+          positio = MIN_POSITIO;
         }
-        else if(positio < -POHJAPOSITIO) {
-          positio = -POHJAPOSITIO;
+        else if(positio < -MIN_POSITIO) {
+          positio = -MIN_POSITIO;
         }
       }*/
    // }
