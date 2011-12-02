@@ -1,9 +1,5 @@
 import processing.opengl.*;
 
-/*import peasy.*;
-
-PeasyCam cam;*/
-
 Hakka hakka;
 int lujuus; //kuinka lujaa hakkaa lyodaan
 boolean onkoPohjassa; // painetaanko valilyontia
@@ -29,6 +25,7 @@ Star[] s = new Star[tahtia];
 PImage puu;
 
 void setup() {
+  
   size(800, 400, OPENGL);
   fill(112);
   hakka = new Hakka();
@@ -40,52 +37,51 @@ void setup() {
   puu = loadImage("wood.png");
   
   //TAHTIJUTTUJA
-    CX=width/2 ; CY=height/2;
-  for(int i=0;i<tahtia;i++){
+  CX=width/2 ; CY=height/2;
+    
+  for (int i=0;i<tahtia;i++) {
     s[i]=new Star();
     s[i].SetPosition();
   }
   
-  // peasycam
-  /*cam = new PeasyCam(this, 100);
-  cam.setMinimumDistance(200);
-  cam.setMaximumDistance(500);*/
 }
 
 
 void draw() {
 
   // Change height of the camera with mouseY
-  
-
   camera(80.0, mouseY, 150.0, // eyeX, eyeY, eyeZ
          80.0, 0.0, 0.0, // centerX, centerY, centerZ
          0.0, 1.0, 0.0); // upX, upY, upZ
   
-  //lights();
   ambientLight(200,200,200);
   directionalLight(110, 110, 110, 0.5, -0.5, 0);
   
-  background(0);
-  
+  background(0);  
   noStroke();
 
   hakka.piirra();
     
-  stroke(0);
+  stroke(color(255,0,0));
   line(-300, 0, 0, 300, 0, 0);
+  stroke(color(0,255,0));
   line(0, -300, 0, 0, 300, 0);
+  stroke(color(0,0,255));
   line(0, 0, -300, 0, 0, 300);
   
-            //TAHTIJUTTUJA
-  for(int i=0;i<tahtia;i++) {
+  stroke(0);
+  
+  // TAHTIJUTTUJA
+  for (int i=0;i<tahtia;i++) {
     s[i].DrawStar();
   }
   
 }
 
 void keyPressed() {
-  
+ 
+ // vaihdetaan valittua hakkaa hakanPainallus()-metodin avulla
+ // riippuen siita painaako nuolta ylos- vai alaspain
  if(keyCode == UP && !onkoPohjassa) {
    hakka.hakanPainallus(true);
  }
@@ -94,6 +90,7 @@ void keyPressed() {
    hakka.hakanPainallus(false);
  }
  
+ // valilyonnin painaminen muuttaa hakan lyonnin lujuutta
  if(key == ' ') {
    lujuus+=5;
    onkoPohjassa = true;
@@ -102,9 +99,13 @@ void keyPressed() {
 
 void keyReleased() {
   
+  // kun valilyonnista paastetaan irti muutetaan hakan sijaintia lyonnin lujuuden suhteen
   if(key == ' ') {
     Lierio valittu = hakka.annaValittuTappi();
-    int muutos = (int) (255/50);
+    int muutos = (int) (lujuus/9);
+    if (muutos < 1){
+      muutos = 1;
+  }
     if (valittu != null){
       valittu.muutaPositiota(muutos);
       println(valittu.annaPositio());
