@@ -6,8 +6,12 @@ boolean onkoPohjassa; // painetaanko valilyontia
 boolean ylosalaisin; // onko hakka ylosalaisin suhteessa alkup. asentoon
 
 boolean kaantoKaynnissa;
-int kaantokello;
 int kaanto;
+final int KAANNON_NOPEUS = 100;
+
+boolean nostoKaynnissa;
+int dz;
+boolean laskuKaynnissa;
 
 //hakassa olevien reikien lukumäärä:
 final int REIKIA = 8;
@@ -134,15 +138,34 @@ void draw() {
     vertex(500,500,-50, 1,1);
   endShape();  
 
-  if(kaantoKaynnissa) {
-    kaanto ++;//(millis()-kaantokello);
+    if(nostoKaynnissa) {
+      dz =(ylosalaisin? dz-1 : dz+1);
+      pushMatrix();
+        translate(0,0,dz);
+        hakka.piirra();
+      popMatrix();
+      if((ylosalaisin? dz <= 20 : dz >= -20)) {
+        dz = 0;
+        nostoKaynnissa = false;
+      }
+    }
+  else if(kaantoKaynnissa) {  
+    kaanto ++;
     pushMatrix();
-      rotateX(PI/kaanto);
+      translate(0,0,20);
+      rotateX((ylosalaisin? PI : 0)+(PI/KAANNON_NOPEUS)*kaanto);
         hakka.piirra();
     popMatrix();
-    if(kaanto >= 200) {
+    if(kaanto >= KAANNON_NOPEUS) {
       kaantoKaynnissa = false;
+      
+      if(ylosalaisin) {
+        ylosalaisin = false;
+      }
+      else ylosalaisin = true;
+      
       kaanto = 0;
+      nostoKaynnissa = true;
     }
   }
   else {
@@ -172,8 +195,6 @@ void draw() {
 }
 
 void keyPressed() {
-  if(kaantoKaynnissa) return;
- 
  // vaihdetaan valittua hakkaa hakanPainallus()-metodin avulla
  // riippuen siita painaako nuolta ylos- vai alaspain
  if(keyCode == UP && !onkoPohjassa) {
@@ -184,6 +205,8 @@ void keyPressed() {
    hakka.hakanPainallus(false);
  }
  
+ if(kaantoKaynnissa) return;
+   
  if(key == 'a') {
   kaannaHakkaYmpari(); 
  }
@@ -198,7 +221,8 @@ void keyPressed() {
 }
 
 void keyReleased() {
-  
+  if(kaantoKaynnissa) return;
+
   // kun valilyonnista paastetaan irti muutetaan hakan sijaintia lyonnin lujuuden suhteen
   if(key == ' ') {
     Lierio valittu = hakka.annaValittuTappi();
@@ -222,10 +246,5 @@ void keyReleased() {
 
 void kaannaHakkaYmpari() {
     kaantoKaynnissa = true;
-    kaantokello = millis();
-    if(ylosalaisin) {
-      ylosalaisin = false;
-    }
-    else ylosalaisin = true;
-    println(ylosalaisin);
+    nostoKaynnissa = true;
   }
