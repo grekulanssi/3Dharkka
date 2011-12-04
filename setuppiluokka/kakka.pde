@@ -3,7 +3,7 @@ Hakka on H-kirjaimen muotoinen lasten lelu.
 */
 class Hakka {
   
-  final int TAPIN_PITUUS = 60;
+  final int TAPIN_PITUUS = 55;
   color puunvari = color(165,83,0);
   
   int valitunIndeksi;
@@ -94,7 +94,7 @@ class Hakka {
   
   pushMatrix();
   rotateX(PI/2);
-  translate(-75, -20, -20);
+  translate(-75, -TAPIN_PITUUS/2, -20);
   
   for(int i = 0; i < REIKIA; i++){
     Lierio tappi = lieriot[i];
@@ -127,9 +127,9 @@ class Hakka {
     rotateX(PI/2);
     translate(0, 0, -tappi.annaPositio());
     ellipse(0, 0,HALKAISIJA, HALKAISIJA);
-    translate(0,0,-60);
+    translate(0,0,-TAPIN_PITUUS);
     ellipse(0, 0, HALKAISIJA, HALKAISIJA);
-    translate(0, 0, 60);
+    translate(0, 0, TAPIN_PITUUS);
     translate(0, 0, tappi.annaPositio());
     rotateX(-PI/2);
     popMatrix();
