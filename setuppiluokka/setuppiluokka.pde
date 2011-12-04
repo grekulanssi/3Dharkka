@@ -33,6 +33,7 @@ Star[] s = new Star[tahtia];
 
 PImage puu;
 PImage lattia;
+PImage katto;
 
 PImage[] walls;
 
@@ -49,6 +50,7 @@ void setup() {
   
   puu = loadImage("wood.png");
   lattia = loadImage("lattia.png");
+  katto = loadImage("eye.jpg");
   
   walls = new PImage[4];
   
@@ -72,8 +74,8 @@ void setup() {
 void draw() {
 
   // Change height of the camera with mouseY
-  camera(0.0, mouseY-60, 150.0, // eyeX, eyeY, eyeZ
-         0.0, 0.0, 0.0, // centerX, centerY, centerZ
+  camera(0.0, mouseY/*-60*/, 150.0, // eyeX, eyeY, eyeZ
+         0.0, 0.0, 0.0,//50.0, // centerX, centerY, centerZ
          0.0, 1.0, 0.0); // upX, upY, upZ
      
   rotateZ(frameCount / 500.0);
@@ -82,7 +84,9 @@ void draw() {
 
   directionalLight(110, 110, 110, 0.5, -0.5, 0);
   directionalLight(110, 110, 110, -0.5, 0.5, 0);
-  directionalLight(110, 110, 110, 0, 0, 1);
+  directionalLight(80,80,80, 0,0,1);
+  
+  directionalLight(150,150,150, 0,0,-1);
 
  background(0);
   
@@ -136,7 +140,17 @@ void draw() {
     vertex(-500,500,615, 0,0);
     vertex(500,500,615, 1,0);
     vertex(500,500,-50, 1,1);
-  endShape();  
+  endShape();
+  
+  //KATTO
+  beginShape();
+    textureMode(NORMALIZED);
+    texture(katto);
+    vertex(-500,-500,615, 0,0);
+    vertex(-500,500,615, 0,1);
+    vertex(500,500,615, 1,1);
+    vertex(500,-500,615, 1,0);
+  endShape();
 
     if(nostoKaynnissa) {
       dz =(ylosalaisin? dz-1 : dz+1);
