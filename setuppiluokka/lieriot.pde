@@ -1,7 +1,7 @@
 class Lierio {
   
-  static final int MAX_POSITIO = 12;//TESTAA TÄHÄN OIKEA ARVO
-  static final int MIN_POSITIO = -34;
+  static final int MAX_POSITIO = (55/2)-5;
+  static final int MIN_POSITIO = -((55/2)-4);
   
   int pituus;
   
@@ -56,7 +56,7 @@ class Lierio {
   
   // tapin voi lyoda pohjaan asti, ei syvemmalle
   public void muutaPositiota(int muutos){
-      if (positio >= MIN_POSITIO && positio <= MAX_POSITIO){
+      if (!this.onPohjassa()){
         this.positio = (ylosalaisin? this.positio + muutos : this.positio - muutos);
         if(positio < MIN_POSITIO) {
           positio = MIN_POSITIO;
@@ -85,22 +85,27 @@ class Lierio {
   
   // Tappien päätykiekkojen piirtäminen:
   if (sade != 0){
-    kulma = 0;
-    beginShape(TRIANGLE_FAN);
-    texture(puu);
-    //tint(255);
-    textureMode(NORMALIZED);
-    vertex(0, 0, 0, 0.5,0.5);
-    for (int i = 0; i < sarmienMaara; i++){
-      vertex(sade * cos(kulma), 0, sade * sin(kulma));
-      kulma += kulmanLisays;
-    }
-    vertex(0, pituus, 0);
-    for (int i = 0; i <= sarmienMaara; i++){
-      vertex(sade * cos(kulma), pituus, sade * sin(kulma));
-      kulma += kulmanLisays;
-    }
-  endShape();
+    piirraKiekko(sade, sarmienMaara, kulmanLisays);
+    pushMatrix();
+    translate(0,pituus,0);
+    piirraKiekko(sade, sarmienMaara, kulmanLisays);
+    popMatrix();
   }
 }
+
+  void piirraKiekko(float sade, int sarmienMaara, float kulmanLisays) {
+    float kulma = 0;
+    beginShape();
+    texture(puu);
+    textureMode(NORMALIZED);
+    for (int i = 0; i < sarmienMaara; i++){
+      float u = cos(kulma);
+      float v = sin(kulma);
+      vertex(sade * cos(kulma), 0, sade * sin(kulma), u,v);
+      kulma += kulmanLisays;
+    }
+    endShape();
+  }
+
+
 }

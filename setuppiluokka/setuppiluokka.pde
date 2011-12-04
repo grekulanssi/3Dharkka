@@ -96,7 +96,7 @@ void draw() {
          0.0, 0.0, 0.0, // centerX, centerY, centerZ
          0.0, 1.0, 0.0); // upX, upY, upZ
      
-  rotateZ(frameCount / 100.0);
+  rotateZ(frameCount / 500.0);
 
   ambientLight(200,200,200);
 
