@@ -126,9 +126,7 @@ class Hakka {
     pushMatrix();
     rotateX(PI/2);
     translate(0, 0, -tappi.annaPositio());
-    ellipse(0, 0,HALKAISIJA, HALKAISIJA);
     translate(0,0,-TAPIN_PITUUS);
-    ellipse(0, 0, HALKAISIJA, HALKAISIJA);
     translate(0, 0, TAPIN_PITUUS);
     translate(0, 0, tappi.annaPositio());
     rotateX(-PI/2);
@@ -238,11 +236,15 @@ class Hakka {
   /*kertoo, onko kaikki tapit hakattu pohjaan saakka
     jotta hakka voitaisiin kääntää ympäri */
   boolean kaikkiPohjassa() {
+    if(kaantoKaynnissa) {
+      return false;
+    }
     for(int t = 0; t < REIKIA; t++) {
       if(!lieriot[t].onPohjassa()) {
         return false;
       }
     }
+    //TÄHÄN BUAHAHAAA NAURUÄÄNEN SOITTO
     if(!kaantoKaynnissa) kaannaHakkaYmpari();
     return true;
   }
