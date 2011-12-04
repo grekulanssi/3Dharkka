@@ -1,7 +1,7 @@
 /*
 Hakka on H-kirjaimen muotoinen lasten lelu.
 */
-class Hakka {
+class Hakka {  
   
   final int TAPIN_PITUUS = 60;
   color puunvari = color(165,83,0);
