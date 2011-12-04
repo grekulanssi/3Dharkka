@@ -1,5 +1,12 @@
 import processing.opengl.*;
+import ddf.minim.*;
+import ddf.minim.analysis.*;
 
+Minim minim;
+AudioInput lineIn;
+FFT fft;
+
+Aani aani;
 Hakka hakka;
 int lujuus; //kuinka lujaa hakkaa lyodaan
 boolean onkoPohjassa; // painetaanko valilyontia
@@ -41,7 +48,20 @@ void setup() {
   
   size(800, 600, OPENGL);
   fill(112);
+  
+  minim = new Minim(this);
+  
+  
+  aani = new Aani();
+  if (aani == null){
+    println("aani on null jo setupissa");
+  }
+  if (aani != null){
+    println("aani ei oo null setupissa");
+  }
+  
   hakka = new Hakka();
+  aani.intronauha();
   lujuus = 10;
   onkoPohjassa = false;
   
@@ -222,7 +242,9 @@ void keyPressed() {
  if(kaantoKaynnissa) return;
    
  if(key == 'a') {
-  kaannaHakkaYmpari(); 
+  kaannaHakkaYmpari();
+  aani.nauru();
+ 
  }
  
  // valilyonnin painaminen muuttaa hakan lyonnin lujuutta
@@ -240,18 +262,21 @@ void keyReleased() {
   // kun valilyonnista paastetaan irti muutetaan hakan sijaintia lyonnin lujuuden suhteen
   if(key == ' ') {
     Lierio valittu = hakka.annaValittuTappi();
-    int muutos = (int) (lujuus/9);
+    int muutos = (int) (lujuus/8);
     if (muutos < 1){
       muutos = 1;
   }
     if (valittu != null){
       valittu.muutaPositiota(muutos);
+      if (muutos > 38){
+      aani.hakkaus();
+      }
       if(hakka.kaikkiPohjassa()) {
         kaannaHakkaYmpari();
+        aani.nauru();
         println("KAIKKI DOWN");
       }
     }
-    println(lujuus);
     lujuus = 10;
     onkoPohjassa = false;
   }
