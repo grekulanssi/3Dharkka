@@ -9,6 +9,9 @@ FFT fft;
 Aani aani;
 Hakka hakka;
 int lujuus; //kuinka lujaa hakkaa lyodaan
+
+boolean aloitusnaytto;
+
 boolean onkoPohjassa; // painetaanko valilyontia
 boolean ylosalaisin; // onko hakka ylosalaisin suhteessa alkup. asentoon
 
@@ -38,6 +41,8 @@ final float SPEED = 1.9;
 
 Star[] s = new Star[tahtia];
 
+PImage aloitus;
+
 PImage puu;
 PImage lattia;
 PImage katto;
@@ -49,9 +54,9 @@ void setup() {
   size(800, 600, OPENGL);
   fill(112);
   
+  aloitus = loadImage("aloitus.png");
+  
   minim = new Minim(this);
-  
-  
   aani = new Aani();
   if (aani == null){
     println("aani on null jo setupissa");
@@ -61,6 +66,9 @@ void setup() {
   }
   
   hakka = new Hakka();
+  
+  aloitusnaytto = true;
+  
   aani.intronauha();
   lujuus = 10;
   onkoPohjassa = false;
@@ -92,6 +100,11 @@ void setup() {
 
 
 void draw() {
+  
+  if(aloitusnaytto) {
+   image(aloitus,0,0);
+   return; 
+  }
 
   // Change height of the camera with mouseY
   camera(0.0, mouseY/*-60*/, 150.0, // eyeX, eyeY, eyeZ
@@ -242,6 +255,10 @@ void keyPressed() {
  if(kaantoKaynnissa) return;
    
  if(key == 'a') {
+   if(aloitusnaytto) {
+     aloitusnaytto=false;
+     return;
+   }
   kaannaHakkaYmpari();
   aani.nauru();
  
