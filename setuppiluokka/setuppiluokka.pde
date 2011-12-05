@@ -40,13 +40,6 @@ final int HALKAISIJA = 12;
 int lierioitaLuotu;
 int klikattu; // maarittaa sen pyoritetaanko hakkaa vai ei
 
-/*TAHTIJUTTUJA
-int tahtia = 400;
-final int SPREAD = 200;
-int CX, CY;
-final float SPEED = 1.9;
-
-Star[] s = new Star[tahtia];*/
 
 PImage aloitus;
 
@@ -99,26 +92,17 @@ void setup() {
   walls[2] = loadImage("tiina.jpg");
   walls[3] = loadImage("oliver.jpg");
   
-  /*TAHTIJUTTUJA
-  CX = width/2;
-  CY = height/2;
-
-  for (int i = 0; i < tahtia; i++) {
-    s[i] = new Star();
-    s[i].SetPosition();
-  }
-  */
 }
 
 
 void draw() {
-  
+  //Aloitusnayton piirtaminen
   if(aloitusnaytto) {
    image(aloitus,0,0);
    return; 
   }
 
-  // Change height of the camera with mouseY
+  // Kameran korkeutta voi muuttaa liikuttamalla hiirta
   camera(0.0, mouseY-60, 150.0, // eyeX, eyeY, eyeZ
          0.0, 0.0, 0.0,//50.0, // centerX, centerY, centerZ
          0.0, 1.0, 0.0); // upX, upY, upZ
@@ -269,10 +253,6 @@ void draw() {
   
   stroke(0);
   
-  // TAHTIJUTTUJA
- /* for (int i=0;i<tahtia;i++) {
-    s[i].DrawStar();
-  }*/
   
 }
 
