@@ -15,13 +15,13 @@ boolean aloitusnaytto;
 boolean onkoPohjassa; // painetaanko valilyontia
 boolean ylosalaisin; // onko hakka ylosalaisin suhteessa alkup. asentoon
 
+// Apumuuttujia piirtoa ja pelin kulkua varten
 int onHakattuPohjaan;
 int hakkaaKaannetty;
 boolean kaantoKaynnissa;
 int kaanto;
 final int KAANNON_NOPEUS = 100;
 
-// Apumuuttujia piirtoa ja pelin kulkua varten
 boolean nostoKaynnissa;
 int dz;
 boolean laskuKaynnissa;
@@ -196,7 +196,7 @@ void draw() {
       if (!rajahdetty){
       nostettu = true;
       rajahda();
-      }
+        }
       rajahdetty = true;
       }
    }
@@ -273,6 +273,7 @@ void keyPressed() {
  // vaihdetaan valittua hakkaa hakanPainallus()-metodin avulla
  // riippuen siita painaako nuolta ylos- vai alaspain
  
+ // tarkistetaan aina aluksi, onko jo voitettu
  voitto();
  if(!voitettu){
  
@@ -283,9 +284,9 @@ void keyPressed() {
  if(keyCode == DOWN && !onkoPohjassa) {
    hakka.hakanPainallus(false);
  }
- 
+ // jos kääntö on käynnissä, ei toimita
  if(kaantoKaynnissa) return;
-   
+ // a:n painaminen kääntää hakan ympäri
  if(key == 'a') {
    if(aloitusnaytto) {
      aloita();
@@ -316,11 +317,13 @@ void keyReleased() {
     if (muutos < 1){
       muutos = 1;
   }
+  // muutetaan valitun tapin paikkaa alaspäin
     if (valittu != null){
       valittu.muutaPositiota(muutos);
       if (muutos > 38){
       aani.hakkaus();
       }
+      // kun kaikki tapit on pohjassa, käännetään hakka
       if(hakka.kaikkiPohjassa()) {
         kaannaHakkaYmpari();
         aani.nauru();
@@ -340,8 +343,10 @@ void kaannaHakkaYmpari() {
   }
   
   public void voitto(){
+    // peli voitetaan, kun hakka on kääntynyt yli kaksi kertaa
+    // ja tapit on hakattu pohjaan yli kaksi kertaa
    if (hakkaaKaannetty > 2 && onHakattuPohjaan > 2){
-     println("nyt returnataan true");
+     
    voitettu = true;
    }
  }
