@@ -1,3 +1,4 @@
+/*
 class Star { 
   float x = 0, y = 0, z = 0, sx = 0, sy = 0;
   void SetPosition(){
@@ -26,4 +27,4 @@ class Star {
     ellipse( (int) sx, (int) sy, 5, 5);
     popMatrix();
   }
-}
+}*/

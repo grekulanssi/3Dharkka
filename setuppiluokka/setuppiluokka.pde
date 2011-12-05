@@ -33,13 +33,13 @@ final int HALKAISIJA = 12;
 int lierioitaLuotu;
 int klikattu; // maarittaa sen pyoritetaanko hakkaa vai ei
 
-//TAHTIJUTTUJA
+/*TAHTIJUTTUJA
 int tahtia = 400;
 final int SPREAD = 200;
 int CX, CY;
 final float SPEED = 1.9;
 
-Star[] s = new Star[tahtia];
+Star[] s = new Star[tahtia];*/
 
 PImage aloitus;
 
@@ -87,15 +87,15 @@ void setup() {
   walls[2] = loadImage("tiina.jpg");
   walls[3] = loadImage("oliver.jpg");
   
-  //TAHTIJUTTUJA
+  /*TAHTIJUTTUJA
   CX = width/2;
   CY = height/2;
-    
+
   for (int i = 0; i < tahtia; i++) {
     s[i] = new Star();
     s[i].SetPosition();
   }
-  
+  */
 }
 
 
@@ -107,7 +107,7 @@ void draw() {
   }
 
   // Change height of the camera with mouseY
-  camera(0.0, mouseY/*-60*/, 150.0, // eyeX, eyeY, eyeZ
+  camera(0.0, mouseY-60, 150.0, // eyeX, eyeY, eyeZ
          0.0, 0.0, 0.0,//50.0, // centerX, centerY, centerZ
          0.0, 1.0, 0.0); // upX, upY, upZ
      
@@ -241,6 +241,19 @@ void draw() {
   
 }
 
+void aloita() {
+  aloitusnaytto = false;
+  aani.nauru();
+}
+
+void mouseClicked() {
+ if(aloitusnaytto) {
+   if(340 < mouseX && mouseX < 460 && 435 < mouseY && mouseY < 595) {
+     aloita();
+   }
+ } 
+}
+
 void keyPressed() {
  // vaihdetaan valittua hakkaa hakanPainallus()-metodin avulla
  // riippuen siita painaako nuolta ylos- vai alaspain
@@ -256,7 +269,7 @@ void keyPressed() {
    
  if(key == 'a') {
    if(aloitusnaytto) {
-     aloitusnaytto=false;
+     aloita();
      return;
    }
   kaannaHakkaYmpari();
