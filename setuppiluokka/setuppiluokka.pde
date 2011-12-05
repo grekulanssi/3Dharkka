@@ -21,12 +21,13 @@ boolean kaantoKaynnissa;
 int kaanto;
 final int KAANNON_NOPEUS = 100;
 
+// Apumuuttujia piirtoa ja pelin kulkua varten
 boolean nostoKaynnissa;
 int dz;
 boolean laskuKaynnissa;
-boolean nostettu;
-int nostoluku;
-boolean voitettu;
+boolean nostettu; // apuna hakan nostamisessa lopussa
+int nostoluku; // apuna hakan nostamisessa lopussa
+boolean voitettu; // kytkimiä
 boolean rajahdetty;
 
 //hakassa olevien reikien lukumäärä:
@@ -196,16 +197,17 @@ void draw() {
     vertex(500,-500,615, 1,0);
   endShape();
   
+  // jos voittoehdot ovat täyttyneet
   if (voitettu) {
-    println("nyt translatetaan ylös");
+    // jos hakkaa ei ole vielä nostettu
     if (!nostettu) {
     pushMatrix();
-    translate(0,0,nostoluku*2);
+    translate(0,0,nostoluku*2); // nostetaan hakkaa
     hakka.piirra();
     popMatrix();
-    println(nostoluku);
     nostoluku++;
      }
+     // kun hakka on tarpeeksi korkealla, räjähdetään
     if (nostoluku > 210) {
       if (!rajahdetty){
       nostettu = true;
