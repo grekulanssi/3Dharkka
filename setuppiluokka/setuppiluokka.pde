@@ -15,6 +15,8 @@ boolean aloitusnaytto;
 boolean onkoPohjassa; // painetaanko valilyontia
 boolean ylosalaisin; // onko hakka ylosalaisin suhteessa alkup. asentoon
 
+int onHakattuPohjaan;
+int hakkaaKaannetty;
 boolean kaantoKaynnissa;
 int kaanto;
 final int KAANNON_NOPEUS = 100;
@@ -22,6 +24,10 @@ final int KAANNON_NOPEUS = 100;
 boolean nostoKaynnissa;
 int dz;
 boolean laskuKaynnissa;
+boolean nostettu;
+int nostoluku;
+boolean voitettu;
+boolean rajahdetty;
 
 //hakassa olevien reikien lukumäärä:
 final int REIKIA = 8;
@@ -72,6 +78,11 @@ void setup() {
   aani.intronauha();
   lujuus = 10;
   onkoPohjassa = false;
+  onHakattuPohjaan = 0;
+  hakkaaKaannetty = 0;
+  nostettu = false;
+  nostoluku = 0;
+  voitettu = false;
   
   lierioitaLuotu = 0;
   klikattu = 0;
@@ -184,8 +195,27 @@ void draw() {
     vertex(500,500,615, 1,1);
     vertex(500,-500,615, 1,0);
   endShape();
-
-  if(nostoKaynnissa) {
+  
+  if (voitettu) {
+    println("nyt translatetaan ylös");
+    if (!nostettu) {
+    pushMatrix();
+    translate(0,0,nostoluku*2);
+    hakka.piirra();
+    popMatrix();
+    println(nostoluku);
+    nostoluku++;
+     }
+    if (nostoluku > 210) {
+      if (!rajahdetty){
+      nostettu = true;
+      rajahda();
+      }
+      rajahdetty = true;
+      }
+   }
+   
+  else if(nostoKaynnissa) {
     dz++;
     pushMatrix();
       translate(0,0,dz);
@@ -260,6 +290,10 @@ void mouseClicked() {
 void keyPressed() {
  // vaihdetaan valittua hakkaa hakanPainallus()-metodin avulla
  // riippuen siita painaako nuolta ylos- vai alaspain
+ 
+ voitto();
+ if(!voitettu){
+ 
  if(keyCode == UP && !onkoPohjassa) {
    hakka.hakanPainallus(true);
  }
@@ -286,8 +320,9 @@ void keyPressed() {
    lujuus+=10;
    }
    onkoPohjassa = true;
+   }
+  }
  }
-}
 
 void keyReleased() {
   if(kaantoKaynnissa) return;
@@ -307,7 +342,7 @@ void keyReleased() {
       if(hakka.kaikkiPohjassa()) {
         kaannaHakkaYmpari();
         aani.nauru();
-        println("KAIKKI DOWN");
+        onHakattuPohjaan++;
       }
     }
     lujuus = 10;
@@ -317,6 +352,19 @@ void keyReleased() {
 }
 
 void kaannaHakkaYmpari() {
+    hakkaaKaannetty++;
     kaantoKaynnissa = true;
     nostoKaynnissa = true;
   }
+  
+  public void voitto(){
+   if (hakkaaKaannetty > 2 && onHakattuPohjaan > 2){
+     println("nyt returnataan true");
+   voitettu = true;
+   }
+ }
+ 
+ public void rajahda(){
+   aani.rajahdys();
+   
+ }
