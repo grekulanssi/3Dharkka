@@ -15,7 +15,7 @@ class Aani {
 
   public Aani() {
     println("3MINIM ON " + minim);
-    minim.debugOn();
+    //minim.debugOn();
   
     djIntro = minim.loadFile("alkuloop.mp3");
     

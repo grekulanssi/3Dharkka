@@ -63,6 +63,9 @@ class Hakka {
           kaantokello = 0;
         }
       }*/
+    }  if(ylosalaisin) {
+      pushMatrix();
+        rotateX(PI);
     }
     
     fill(puunvari);
@@ -134,7 +137,11 @@ class Hakka {
     
   }
   popMatrix();
-  }
+  
+  if(ylosalaisin) {
+      popMatrix();
+  } 
+}
   
   // piirtää laitapalikan vertekseillä
   void piirraLaita() {

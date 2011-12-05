@@ -185,44 +185,47 @@ void draw() {
     vertex(500,-500,615, 1,0);
   endShape();
 
-    if(nostoKaynnissa) {
-      dz =(ylosalaisin? dz-1 : dz+1);
-      pushMatrix();
-        translate(0,0,dz);
-        hakka.piirra();
-      popMatrix();
-      if((ylosalaisin? dz <= 20 : dz >= -20)) {
-        dz = 0;
-        nostoKaynnissa = false;
-      }
+  if(nostoKaynnissa) {
+    dz++;
+    pushMatrix();
+      translate(0,0,dz);
+      hakka.piirra();
+    popMatrix();
+      if(abs(dz) >= 20) {
+      nostoKaynnissa = false;
+      laskuKaynnissa = true;
     }
+  }
   else if(kaantoKaynnissa) {  
     kaanto ++;
     pushMatrix();
       translate(0,0,20);
-      rotateX((ylosalaisin? PI : 0)+(PI/KAANNON_NOPEUS)*kaanto);
-        hakka.piirra();
+      rotateX((PI/KAANNON_NOPEUS)*kaanto);
+      hakka.piirra();
     popMatrix();
     if(kaanto >= KAANNON_NOPEUS) {
-      kaantoKaynnissa = false;
-      
+      kaantoKaynnissa = false;  
       if(ylosalaisin) {
         ylosalaisin = false;
       }
       else ylosalaisin = true;
-      
       kaanto = 0;
-      nostoKaynnissa = true;
+      laskuKaynnissa = true;
+    }
+  }
+  else if(laskuKaynnissa) {
+    dz--;
+    pushMatrix();
+      translate(0,0,dz);
+      hakka.piirra();
+    popMatrix();
+    println(ylosalaisin);
+    if(abs(dz) == 0) {
+      laskuKaynnissa = false;
     }
   }
   else {
-    if(ylosalaisin) {
-      pushMatrix();
-        rotateX(PI);
-          hakka.piirra();
-      popMatrix();
-    }
-    else hakka.piirra();
+    hakka.piirra();
   }
     
   stroke(color(255,0,0));
